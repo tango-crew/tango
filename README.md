@@ -8,7 +8,20 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 2. `npm install`
 3. `ionic serve`
 
+## Preview
+
+You can preview the app installing the [Ionic View](http://view.ionic.io/) on your cell phone. So you can run the following command:
+ 
+```
+ionic upload
+```
+
 __* Ionic 2 will be integrated within the [Ionic CLI](https://www.npmjs.com/package/ionic), [Ionic Lab](http://lab.ionic.io/), [Ionic Creator](http://creator.ionic.io/) (basically every Ionic tool), to make building an Ionic app even easier.__
+
+## References
+
+[Ionic Documentation](http://ionicframework.com/docs/v2/)
+[Angular 2 Documentation](https://angular.io/docs/ts/latest/index.html)
 
 ## Things to keep in mind
 
