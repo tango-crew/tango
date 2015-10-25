@@ -20,8 +20,8 @@ __* Ionic 2 will be integrated within the [Ionic CLI](https://www.npmjs.com/pack
 
 ## References
 
-[Ionic Documentation](http://ionicframework.com/docs/v2/)
-[Angular 2 Documentation](https://angular.io/docs/ts/latest/index.html)
+* [Ionic Documentation](http://ionicframework.com/docs/v2/)
+* [Angular 2 Documentation](https://angular.io/docs/ts/latest/index.html)
 
 ## Things to keep in mind
 
