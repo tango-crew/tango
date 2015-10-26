@@ -2,7 +2,7 @@
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Tango</name>
   <description>Tango is an awesome app to find and schedule hair cuts, make up, and something that you want.</description>
-  <author email="diego.domingues16@gmail.com, rogerio.alcantara@gmail.com" href="http://tango.com/">Tango Team</author>
+  <author email="diego.domingues16@gmail.com, rogerio.alcantara@gmail.com, saulocamposi@gmail.com" href="http://tango.com/">Tango Team</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
