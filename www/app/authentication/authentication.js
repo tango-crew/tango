@@ -16,7 +16,7 @@ export class AuthenticationPage {
     this.fbService.login({scope: 'email,publish_actions'}).then(
       function (response) {
         if (response.status === 'connected') {
-          self.nav.push(ProfilePage);
+          self.nav.setRoot(ProfilePage);
         } else {
           alert('Facebook login failed');
         }
