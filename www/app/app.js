@@ -1,6 +1,7 @@
 import {App, IonicApp, Platform} from 'ionic/ionic';
 
 import {AuthenticationPage} from './authentication/authentication';
+import {FacebookIntegrationService} from './facebookIntegrationService'
 
 @App({
   templateUrl: 'app/app.html'
@@ -35,12 +36,12 @@ class MyApp {
       if (typeof StatusBar !== 'undefined') {
         StatusBar.styleDefault();
       }
+
+      new FacebookIntegrationService().init({appId: '879700552144985'});
     });
   }
 
   openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.app.getComponent('menu').close();
     // navigate to the new page if it is not the current page
     let nav = this.app.getComponent('nav');
     nav.setRoot(page.component);

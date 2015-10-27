@@ -1,0 +1,14 @@
+<ion-navbar *navbar>
+    <ion-title>Olá {{user.name}}</ion-title>
+</ion-navbar>
+
+<ion-content padding class="profile">
+    <ion-card>
+        <img src="https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400" />
+        <ion-card-content>
+            <h2 class="card-title">
+                Contato: {{user.email}}
+            </h2>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
