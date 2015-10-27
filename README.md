@@ -8,6 +8,14 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 2. `npm install`
 3. `ionic serve`
 
+### Platforms
+
+Add an IOS or Android platform support it is very simple:
+
+1. `ionic platform add ios|android`
+2. `ionic build ios|android`
+3. `ionic emulate ios|android`
+
 ## Preview
 
 You can preview the app installing the [Ionic View](http://view.ionic.io/) on your cell phone. So you can run the following command:
