@@ -1,4 +1,8 @@
 <ion-navbar *navbar>
+    <a menu-toggle>
+        <icon menu></icon>
+    </a>
+
     <ion-title>Olá {{user.name}}</ion-title>
 </ion-navbar>
 
@@ -6,9 +10,9 @@
     <ion-card>
         <img src="https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400" />
         <ion-card-content>
-            <h2 class="card-title">
+            <h5 class="card-title">
                 Contato: {{user.email}}
-            </h2>
+            </h5>
         </ion-card-content>
     </ion-card>
 </ion-content>
