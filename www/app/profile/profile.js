@@ -1,12 +1,11 @@
-import {Page, NavController, NavParams, Events} from 'ionic/ionic';
+import {Page, NavController, NavParams} from 'ionic/ionic';
 
 @Page({
   templateUrl: 'app/profile/profile.html'
 })
 export class ProfilePage {
-  constructor(nav: NavController, params: NavParams, events: Events) {
+  constructor(nav: NavController, params: NavParams) {
     this.nav = nav;
-    this.events = events;
     this.user = params.get('user');
   }
 }
