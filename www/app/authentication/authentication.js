@@ -1,18 +1,16 @@
-import {Page, NavController, Events} from 'ionic/ionic';
+import {Page, Events} from 'ionic/ionic';
 import {FacebookIntegrationService} from './../facebookIntegrationService.js'
-import {ProfilePage} from './../profile/profile'
 
 @Page({
   templateUrl: 'app/authentication/authentication.html'
 })
 export class AuthenticationPage {
-  constructor(nav: NavController, events: Events) {
-    this.nav = nav;
+  constructor(events: Events) {
     this.fbService = new FacebookIntegrationService();
     this.events = events;
   }
 
-  fbLogin() {
+  login() {
     let self = this;
     this.fbService.login({scope: 'email,publish_actions'}).then(() => {
       self.fbService.api({
