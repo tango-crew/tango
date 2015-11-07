@@ -4,9 +4,10 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 
 ## Getting Started
 
-1. Clone repo
-2. `npm install`
-3. `ionic serve`
+1. Install [Node Version Manager](https://github.com/creationix/nvm)
+2. Clone repo
+3. `npm install`
+4. `ionic serve`
 
 ### Platforms
 
