@@ -1,11 +1,14 @@
-import {Page, NavController, NavParams} from 'ionic/ionic';
+import {Page, NavController, Storage, LocalStorage} from 'ionic/ionic';
 
 @Page({
   templateUrl: 'app/profile/profile.html'
 })
 export class ProfilePage {
-  constructor(nav: NavController, params: NavParams) {
+  constructor(nav: NavController) {
+    let self = this;
     this.nav = nav;
-    this.user = params.get('user');
+    new Storage(LocalStorage)
+      .get('user')
+      .then((user) => self.user = JSON.parse(user));
   }
 }

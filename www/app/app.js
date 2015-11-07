@@ -11,22 +11,20 @@ class MyApp {
   constructor(app: IonicApp, platform: Platform, events: Events) {
     this.app = app;
     this.platform = platform;
+    this.events = events;
     this.initializeApp();
-    this.storage = new Storage(LocalStorage);
-    this.rootPage = AuthenticationPage;
-    events.subscribe('user:authenticated', (args) => this.handleUserAuthenticated(args[0]));
   }
 
   handleUserAuthenticated(user) {
-    this.storage.set('user', user);
-    this.user = user;
+    this.setUser(user);
+    this.storage.set('user', JSON.stringify(user));
     this.pages = this.menuPages();
     this.openPage(this.menuPages()[0]);
   }
 
   menuPages() {
     return [
-      {title: 'Perfil', component: ProfilePage, args: {'user': this.user}}
+      {title: 'Perfil', component: ProfilePage}
     ]
   }
 
@@ -38,17 +36,28 @@ class MyApp {
 
       new FacebookIntegrationService().init({appId: '879700552144985'});
     });
+
+    this.storage = new Storage(LocalStorage);
+    this.events.subscribe('user:authenticated', (args) => this.handleUserAuthenticated(args[0]));
+    this.storage.get('user')
+      .then((user) => {
+        if (user) {
+          this.setUser(user);
+          this.pages = this.menuPages();
+          this.rootPage = this.menuPages()[0].component;
+        } else {
+          this.rootPage = AuthenticationPage;
+        }
+      });
   }
 
-  loadUserAuthenticated() {
-    this.user = this.storage.get('user');
-    return this.user;
+  setUser(user) {
+    this.user = user;
   }
 
   logout() {
     this.openPage({component: AuthenticationPage});
-    this.storage.set('user', null);
-    this.loadUserAuthenticated();
+    this.storage.remove('user');
   }
 
   openPage(page) {
@@ -57,6 +66,6 @@ class MyApp {
     }
 
     let nav = this.app.getComponent('nav');
-    nav.setRoot(page.component, page.args);
+    nav.setRoot(page.component);
   }
 }
