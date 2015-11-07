@@ -14,6 +14,13 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 Add an IOS or Android platform support it is very simple:
 
 1. `ionic platform add ios|android`
+    * If you choose Android, you must create 2 files on **/plaftorms/android** directory: *debug-signing.properties* and *release-signing.properties*. With the following properties:
+        * storeFile=./../../tango.keystore
+        * storeType=jks
+        * storePassword=******
+        * keyAlias=Tango
+        * keyPassword=*****
+    * *Replacing with the correct passwords, of course.*
 2. `ionic build ios|android`
 3. `ionic emulate ios|android`
 
