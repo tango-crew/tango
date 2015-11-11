@@ -3,10 +3,11 @@ import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic/ioni
 import {AuthenticationPage} from './authentication/authentication';
 import {ProfilePage} from './profile/profile';
 import {FacebookService} from './services/facebook'
+import {UsersService} from './services/users'
 
 @App({
   templateUrl: 'app/app.html',
-  providers: [FacebookService]
+  providers: [FacebookService, UsersService]
 })
 class MyApp {
   constructor(app: IonicApp, platform: Platform, events: Events, facebookService: FacebookService) {
