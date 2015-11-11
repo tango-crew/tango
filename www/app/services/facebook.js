@@ -4,7 +4,7 @@
  *  - As an Angular service instead of a global object
  *  - Using promises instead of callbacks
  */
-export class FacebookIntegrationService {
+export class FacebookService {
   constructor() {
   }
 

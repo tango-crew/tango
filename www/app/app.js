@@ -2,16 +2,18 @@ import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic/ioni
 
 import {AuthenticationPage} from './authentication/authentication';
 import {ProfilePage} from './profile/profile';
-import {FacebookIntegrationService} from './facebookIntegrationService'
+import {FacebookService} from './services/facebook'
 
 @App({
-  templateUrl: 'app/app.html'
+  templateUrl: 'app/app.html',
+  providers: [FacebookService]
 })
 class MyApp {
-  constructor(app: IonicApp, platform: Platform, events: Events) {
+  constructor(app: IonicApp, platform: Platform, events: Events, facebookService: FacebookService) {
     this.app = app;
     this.platform = platform;
     this.events = events;
+    this.facebookService = facebookService;
     this.initializeApp();
   }
 
@@ -34,7 +36,7 @@ class MyApp {
         StatusBar.styleDefault();
       }
 
-      new FacebookIntegrationService().init({appId: '879700552144985'});
+      this.facebookService.init({appId: '879700552144985'});
     });
 
     this.storage = new Storage(LocalStorage);

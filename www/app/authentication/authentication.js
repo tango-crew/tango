@@ -1,19 +1,19 @@
 import {Page, Events} from 'ionic/ionic';
-import {FacebookIntegrationService} from './../facebookIntegrationService.js'
+import {FacebookService} from './../services/facebook'
 
 @Page({
   templateUrl: 'app/authentication/authentication.html'
 })
 export class AuthenticationPage {
-  constructor(events: Events) {
-    this.fbService = new FacebookIntegrationService();
+  constructor(events: Events, facebookService: FacebookService) {
+    this.facebookService = facebookService;
     this.events = events;
   }
 
   login() {
     let self = this;
-    this.fbService.login({scope: 'email,publish_actions'}).then(() => {
-      self.fbService.api({
+    this.facebookService.login({scope: 'email,publish_actions'}).then(() => {
+      self.facebookService.api({
         path: '/me',
         params: {fields: 'id,name,email'}
       }).then(
