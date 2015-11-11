@@ -8,7 +8,7 @@
 
 <ion-content padding class="profile" *ng-if="user">
     <ion-card>
-        <img src="https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400" />
+        <img src="{{user.avatar()}}" />
         <ion-card-content>
             <ion-item>
                 <icon mail></icon> {{user.email}}
