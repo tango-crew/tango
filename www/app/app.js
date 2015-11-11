@@ -1,4 +1,7 @@
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic/ionic';
+import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
+import {provide} from 'angular2/angular2';
+
 
 import {AuthenticationPage} from './authentication/authentication';
 import {ProfilePage} from './profile/profile';
@@ -7,7 +10,20 @@ import {UsersService} from './services/users'
 
 @App({
   templateUrl: 'app/app.html',
-  providers: [FacebookService, UsersService]
+  providers: [
+    FacebookService,
+    UsersService,
+    provide(Http,
+      {
+        useFactory: (backend, defaultOptions) => {
+          defaultOptions.headers.append('X-Tango-Api-Token', 'jD1yROsja0E59l4sK4LqPRqFSfPpIQIQ');
+          defaultOptions.headers.append('Content-Type', 'application/json');
+          return new Http(backend, defaultOptions);
+        },
+        deps: [XHRBackend, RequestOptions]
+      }
+    )
+  ]
 })
 class MyApp {
   constructor(app: IonicApp, platform: Platform, events: Events, facebookService: FacebookService) {
@@ -42,6 +58,10 @@ class MyApp {
 
     this.storage = new Storage(LocalStorage);
     this.events.subscribe('user:authenticated', (args) => this.handleUserAuthenticated(args[0]));
+    this.verifyIfUserIsAuthenticated();
+  }
+
+  verifyIfUserIsAuthenticated() {
     this.storage.get('user')
       .then((user) => {
         if (user) {
