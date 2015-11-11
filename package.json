@@ -30,5 +30,8 @@
   "cordovaPlatforms": [
     "ios",
     "android"
-  ]
+  ],
+  "scripts": {
+    "start": "ionic serve --lab"
+  }
 }
