@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/angular2';
-import {Http, Headers} from 'angular2/http';
+import {Http} from 'angular2/http';
 
 @Injectable()
 export class UsersService {
