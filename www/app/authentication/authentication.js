@@ -17,7 +17,10 @@ export class AuthenticationPage {
   login() {
     this.facebookService
       .login({scope: 'email,publish_actions'})
-      .then(() => this.getFacebookUser());
+      .then(
+        () => this.getFacebookUser(),
+        (error) => alert(`Erro ao autenticar usuário com o Facebook: ${JSON.stringify(error)}`)
+      );
   }
 
   getFacebookUser() {
@@ -28,7 +31,7 @@ export class AuthenticationPage {
       })
       .then(
         (user) => this.verifyIfUserExistsOnApi(user),
-        (error) => console.log('Facebook error: ', JSON.stringify(error))
+        (error) => alert(`Erro ao obter usuário do Facebook: ${JSON.stringify(error)}`)
       );
   }
 
@@ -46,7 +49,8 @@ export class AuthenticationPage {
           } else {
             this.notifyWith(userFromApi);
           }
-        }
+        },
+        (error) => alert(`erro ao buscar usuários: ${JSON.stringify(error)}`)
       );
   }
 
@@ -64,7 +68,7 @@ export class AuthenticationPage {
       )
       .subscribe(
         (response) => this.notifyWith(response.user),
-        (error) => console.log('erro ao criar o usuário', user, JSON.stringify(error))
+        (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
       );
   }
 
