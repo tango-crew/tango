@@ -3,19 +3,24 @@ var wwwPath = path.resolve(__dirname, 'www');
 var outputPath = path.join(wwwPath, 'build', 'js');
 var appPath = path.join(wwwPath, 'app');
 var appJsPath = path.join(appPath, 'app.js');
+var specsPath = path.resolve(__dirname, 'specs');
 
 module.exports = {
-  entry: [
-    "es6-shim",
-    "zone.js",
-    "reflect-metadata",
-    "web-animations.min",
-    // "./www/app/app.js"
-    appJsPath
-  ],
+  entry: {
+    vendor: [
+      "es6-shim",
+      "zone.js",
+      "reflect-metadata",
+      "web-animations.min"
+    ],
+    app: appJsPath,
+    specs: [
+      path.join(specsPath, 'models/user.spec.js')
+    ]
+  },
   output: {
     path: outputPath,
-    filename: 'app.bundle.js'
+    filename: "[name].bundle.js"
     //pathinfo: true // show module paths in the bundle, handy for debugging
   },
   module: {
@@ -23,7 +28,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "awesome-typescript-loader?doTypeCheck=false&useWebpackText=true",
-        include: [wwwPath],
+        include: [wwwPath, specsPath],
         // include: /www(\/|\\)app(\/|\\)/,
         exclude: /node_modules/
       },
@@ -31,7 +36,7 @@ module.exports = {
         test: /\.ts$/,
         loader: "awesome-typescript-loader",
         // include: /www(\/|\\)app(\/|\\)/,
-        include: [wwwPath],
+        include: [wwwPath, specsPath],
         exclude: /node_modules/
       }
     ]
