@@ -1,0 +1,8 @@
+language: node_js
+before_script:
+- npm install -g gulp
+notifications:
+  email:
+  - diego.domingues16@gmail.com, rogerio.alcantara@gmail.com, saulocamposi@gmail.com
+  slack:
+    secure: puI9oyrhrul5lEVx6i0+A6I9puRizGfnY7CN3/3z8e6BV9bpmngeLqtCqf/xNY242Twjrf43qU86BRxDNYzASldmjyRLKQLW4iZth64rO5B3gE+HWLFdLeyEYtl10WmQMJUjd+gJC0oL2FcOhlEmB0mzBv+wOP2ez32Tr1Sv1GgIkYhkDyZVGajTa2XuLeAiCeGQL0cpjXBWk1rQmZUD/z5Tf3HjuPi09RoxpolkMxTH88dXU/mQ/3zMZoOnC/osAACF6jyjh5/XXq/ATZewu1cseLimD5YHqsKG8I8AV26u1kFdbPG8Y54poCC8OXihAe6FhuYwPD7kwNRnecd6CCP79z+orenuHTupeKKpq9k3B/QIarXlYjE0oinQQGPi4BDnNKbmLOWnF6nzkxLOiGhur13E2UaJZppG/ekD4EMvEU/rT5lpPoUqEMectaFQRBguiLFmJRUK6ZF9F8LNBtvjwFXfpRQU/60Sq61UeccqSDwsK8PfJjMbRG8smSlmLIxGiqPu4UMzLCX6npfYfsVl7K/wkLoXZLbIe+eGFR4/4Rb22PIGM6YFR43vPjDwfkeFKluVMzqtvci9TrDp/Y3UriqcP5H5M/blNG24IhbAA4rUJT7VdeOELdzkXtoRenBeOdtWz79j2hf26gOF+ETjLGXHQt5jfbDhXjMtWB8=
