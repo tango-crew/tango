@@ -1,0 +1,56 @@
+<ion-navbar *navbar>
+    <ion-title>Novo Usuário!</ion-title>
+</ion-navbar>
+
+<ion-content padding class="sign-up">
+    <ion-card>
+        <ion-card-content>
+            <ion-list inset>
+                <form (ng-submit)="signUp()" #hf="form">
+                    <ion-input floating-label>
+                        <ion-label>Nome</ion-label>
+                        <input [(ng-model)]="user.name" ng-control="name" #name="form" type="text" required>
+                    </ion-input>
+
+                    <ion-input floating-label>
+                        <ion-label>E-mail</ion-label>
+                        <input [(ng-model)]="user.email" ng-control="email" #email="form" type="email" required>
+                    </ion-input>
+
+                    <ion-input floating-label>
+                        <ion-label>Biografia</ion-label>
+                        <textarea [(ng-model)]="user.bio" id="bio" cols="30" rows="4"></textarea>
+                    </ion-input>
+
+                    <ion-input floating-label>
+                        <ion-label>Senha</ion-label>
+                        <input [(ng-model)]="user.password" ng-control="password" #password="form" type="password" required>
+                    </ion-input>
+
+                    <ion-input floating-label>
+                        <ion-label>Confirme sua Senha</ion-label>
+                        <input [(ng-model)]="user.confirm_password" ng-control="confirm_password" #confirm_password="form" type="password" required>
+                    </ion-input>
+
+                    <br>
+                    <button type="submit" [disabled]="!hf.form.valid" full>Cadastrar</button>
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <div class="flex-center">
+        ou
+    </div>
+
+    <ion-card class="integrations">
+        <ion-card-content>
+            <div class="flex-center">
+                <span>Inscrever-se com:</span>
+                <button default (click)="login()"><icon ion-social-facebook></icon></button>
+                <button light><icon ion-social-instagram></icon></button>
+                <button danger><icon ion-social-googleplus></icon></button>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
