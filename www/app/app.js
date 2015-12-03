@@ -53,7 +53,7 @@ class MyApp {
         StatusBar.styleDefault();
       }
 
-      this.facebookService.init({appId: '879700552144985'});
+      this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
 
     this.storage = new Storage(LocalStorage);
