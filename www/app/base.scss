@@ -1,0 +1,9 @@
+.flex-center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.flex-center > * {
+  margin: auto;
+}

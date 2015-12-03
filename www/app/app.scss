@@ -19,20 +19,14 @@ $colors: (
 
 );
 
-.text-center {
-  text-align: center;
-}
-
-
-
 // Ionic Sass
 // ---------------------------------
 @import "ionic";
 
-
-
 // Import your Sass files here
 // ---------------------------------
+@import "base";
 @import "authentication/authentication";
 @import "profile/profile";
+@import "signup/signup";
 
