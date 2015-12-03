@@ -9,23 +9,20 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 
 1. Install [Node Version Manager](https://github.com/creationix/nvm)
 2. Clone repo
-3. `npm install`
-4. `ionic serve --lab`
+3. Export the variables described [here](https://docs.google.com/document/d/12XfsJxoqpIvneiJz_i8dL86NOwYy8CISqMZnW6p3650)
+4. `chmod 700 bin/setup.sh`
+5. `./bin/setup.sh`
+6. `npm start`
 
 ### Platforms
 
 Add an IOS or Android platform support it is very simple:
 
-1. `ionic platform add ios|android`
-    * If you choose Android, you must create 2 files on **/plaftorms/android** directory: *debug-signing.properties* and *release-signing.properties*. With the following properties:
-        * storeFile=./../../tango.keystore
-        * storeType=jks
-        * storePassword=******
-        * keyAlias=Tango
-        * keyPassword=*****
-    * *Replacing with the correct passwords, of course.*
+1. `ionic platform add ios|android` 
 2. `ionic build ios|android`
 3. `ionic emulate ios|android`
+
+__* Running the *setup.sh* you'll have the Android Platform set :heart_eyes:
 
 ## Preview
 
