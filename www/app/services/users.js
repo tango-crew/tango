@@ -3,7 +3,7 @@ import {Http} from 'angular2/http';
 
 @Injectable()
 export class UsersService {
-  public endpoint = 'http://localhost:3000';
+  public endpoint = 'http://tango-api.herokuapp.com';
 
   constructor(http: Http) {
     this.http = http;
