@@ -1,22 +1,28 @@
 'use strict';
 
-import {Page, Events} from 'ionic/ionic';
+import {Page, NavController, Events} from 'ionic/ionic';
 import {FacebookService} from './../services/facebook'
 import {UsersService} from './../services/users'
+import {SignUpPage} from './../signup/signup'
 
 @Page({
   templateUrl: 'app/authentication/authentication.html'
 })
 export class AuthenticationPage {
-  constructor(events:Events, facebookService:FacebookService, users:UsersService) {
+  constructor(events:Events, facebookService:FacebookService, users:UsersService, nav:NavController) {
     this.facebookService = facebookService;
     this.events = events;
     this.users = users;
+    this.nav = nav;
+  }
+
+  signup() {
+    this.nav.push(SignUpPage);
   }
 
   login() {
     this.facebookService
-      .login({scope: 'email,publish_actions'})
+      .login()
       .then(
         () => this.getFacebookUser(),
         (error) => alert(`Erro ao autenticar usuário com o Facebook: ${JSON.stringify(error)}`)
@@ -25,10 +31,7 @@ export class AuthenticationPage {
 
   getFacebookUser() {
     this.facebookService
-      .api({
-        path: '/me',
-        params: {fields: 'id,name,email'}
-      })
+      .user()
       .then(
         (user) => this.verifyIfUserExistsOnApi(user),
         (error) => alert(`Erro ao obter usuário do Facebook: ${JSON.stringify(error)}`)

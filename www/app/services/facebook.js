@@ -9,71 +9,65 @@ export class FacebookService {
   }
 
   init(params) {
-    return window.openFB.init(params);
+    if (typeof facebookConnectPlugin !== 'undefined') {
+      facebookConnectPlugin.browserInit(params.appId, params.version);
+    }
   }
 
-  login(options) {
-    function resolver(resolve, reject) {
-      window.openFB.login(function (result) {
-        if (result.status === "connected") {
-          resolve(result);
-        } else {
-          reject(result);
-        }
-      }, options);
-    }
-
-    return new Promise(resolver);
+  login() {
+    return new Promise((resolve, reject) => {
+      facebookConnectPlugin.login( ["email", 'public_profile'],
+        (response) => {
+          if (response.status === "connected") {
+            resolve(response);
+          }
+        },
+        (response) => reject(response)
+      );
+    });
   }
 
   logout() {
-    function resolver(resolve, reject) {
-      window.openFB.logout(function () {
-        resolve();
-      });
-    }
-
-    return new Promise(resolver);
-  }
-
-  api(obj) {
-    function resolver(resolve, reject) {
-      obj.success = function (result) {
-        resolve(result);
-      };
-      obj.error = function (error) {
-        reject(error);
-      };
-      window.openFB.api(obj);
-    }
-
-    return new Promise(resolver);
-  }
-
-  revokePermissions() {
-    function resolver(resolve, reject) {
-      window.openFB.revokePermissions(
-        function () {
-          resolve();
-        },
-        function () {
-          reject();
-        }
+    return new Promise((resolve, reject) => {
+      facebookConnectPlugin.logout(
+        (response) => resolve(response),
+        (response) => reject(response)
       );
-    }
+    });
+  }
 
-    return new Promise(resolver);
+  user() {
+    return this.api( 'me/?fields=id,name,email', ['email', 'public_profile']);
+  }
+
+  api(requestPath, permissions) {
+    return new Promise((resolve, reject) => {
+      facebookConnectPlugin.api(
+        requestPath,
+        permissions,
+        (response) => {
+          resolve(response)
+        },
+        (response) => reject(response)
+      );
+    });
   }
 
   getLoginStatus() {
-    function resolver(resolve, reject) {
-      window.openFB.getLoginStatus(
-        function (result) {
-          resolve(result);
-        }
-      );
-    }
+    return new Promise((resolve, reject) => {
+        facebookConnectPlugin.getLoginStatus(
+          (response) => resolve(response),
+          (response) => reject(response)
+        );
+    });
+  }
 
-    return new Promise(resolver);
+  getAccessToken() {
+    return new Promise((resolve, reject) => {
+      facebookConnectPlugin.getAccessToken(
+        (response) => resolve(response),
+        (response) => reject(response)
+      );
+    });
   }
 }

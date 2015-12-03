@@ -20,14 +20,22 @@
                 <br>
 
                 <button full>Entrar</button>
+
+                <br>
+                <br>
+                <p>Novo usuário? <a href="#" (click)="signup()">Cadastra-se</a> </p>
             </ion-list>
         </ion-card-content>
     </ion-card>
 
+    <div class="flex-center">
+        ou
+    </div>
+
     <ion-card class="integrations">
         <ion-card-content>
-            <div class="text-center">
-                <span>Inscrever-se com:</span>
+            <div class="flex-center">
+                <span>Entrar com:</span>
                 <button default (click)="login()"><icon ion-social-facebook></icon></button>
                 <button light><icon ion-social-instagram></icon></button>
                 <button danger><icon ion-social-googleplus></icon></button>
