@@ -7,12 +7,21 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 
 ## Getting Started
 
-1. Install [Node Version Manager](https://github.com/creationix/nvm)
-2. Clone repo
-3. Export the variables described [here](https://docs.google.com/document/d/12XfsJxoqpIvneiJz_i8dL86NOwYy8CISqMZnW6p3650)
-4. `chmod 700 bin/setup.sh`
-5. `./bin/setup.sh`
-6. `npm start`
+1. Install Android SDK and set the environment variables
+
+  ```
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  export ANDROID_HOME=/path/to/android-sdk-macosx
+  export PATH=$PATH:${JAVA_HOME}/bin
+  export PATH=$PATH:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools
+  ```
+
+2. Install [Node Version Manager](https://github.com/creationix/nvm)
+3. Clone repo
+4. Export the variables described [here](https://docs.google.com/document/d/12XfsJxoqpIvneiJz_i8dL86NOwYy8CISqMZnW6p3650)
+5. `chmod 700 bin/setup.sh`
+6. `./bin/setup.sh`
+7. `npm start`
 
 ### Platforms
 
@@ -22,7 +31,7 @@ Add an IOS or Android platform support it is very simple:
 2. `ionic build ios|android`
 3. `ionic emulate ios|android`
 
-__* Running the *setup.sh* you'll have the Android Platform set :heart_eyes:
+**Running the *setup.sh* you'll have the Android Platform set :heart_eyes:**
 
 ## Preview
 
