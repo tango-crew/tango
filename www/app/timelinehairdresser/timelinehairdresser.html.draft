@@ -1,0 +1,109 @@
+<ion-navbar *navbar>
+  <ion-nav-items primary="" style="opacity: 1;">
+      <button class="disable-hover icon-only" (click)="showProfile()">
+        <icon contact="" role="img" class="ion-ios-contact" aria-label="contact"></icon>
+      </button>
+    </ion-nav-items>
+  <ion-title>Timeline Hair Dresser</ion-title>
+</ion-navbar>
+<ion-content class="has-header components-demo cards-bg" style="opacity: 1; transform: translateX(0%) translateZ(0px);"><scroll-content>
+
+<ion-card>
+
+  <ion-item class="item"><ion-avatar item-left="">
+      <img (click)="showProfile()" src="http://ionicframework.com/docs/v2/components/demo/img/marty-avatar.png">
+    </ion-avatar>
+    <ion-item-content>
+    <h2>Marty McFly</h2>
+    <p>November 5, 1955</p>
+  </ion-item-content></ion-item>
+
+  <img (click)="showLook()" src="http://images.askmen.com/photos/gisele-bundchen/gisele-bundchen-94785.jpg">
+
+  <ion-item actions="" class="demo-card item">
+      <button clear="" item-left="" primary="" class="disable-hover icon-left">
+        <icon role="img" thumbs-up="" class="ion-ios-thumbs-up" aria-label="thumbs up"></icon>
+        <div>12 Likes</div>
+      </button>
+      <button clear="" item-left="" primary="" class="disable-hover icon-left">
+        <icon role="img" text="" class="ion-ios-text" aria-label="text"></icon>
+        <div>4 Comments</div>
+      </button>
+      <p class="time-ago" item-left="">
+        11h ago
+      </p>
+    </ion-item>
+
+  <ion-card-content>
+  <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+  </ion-card-content>
+
+</ion-card>
+
+
+<ion-card>
+
+  <ion-item class="item"><ion-avatar item-left="">
+      <img (click)="showProfile()" src="http://ionicframework.com/docs/v2/components/demo/img/sarah-avatar.png.jpeg">
+    </ion-avatar><ion-item-content>
+
+    <h2>Sarah Connor</h2>
+    <p>May 25, 1983</p>
+  </ion-item-content></ion-item>
+
+  <img (click)="showLookSimple()" src="http://media1.popsugar-assets.com/files/2012/12/51/4/192/1922398/40c6e6924a9240cd_penelopecruz.xxxlarge_2/i/Penelope-Cruz.jpg">
+
+  <ion-card-content>
+  <p>I face the unknown future, with a sense of hope. Because if a machine, a Terminator, can learn the value of human life, maybe we can too.</p>
+  </ion-card-content>
+
+  <ion-item actions="" class="demo-card item"><button clear="" item-left="" primary="" class="disable-hover icon-left">
+      <icon role="img" thumbs-up="" class="ion-ios-thumbs-up" aria-label="thumbs up"></icon>
+      <div>30 Likes</div>
+    </button><button clear="" item-left="" primary="" class="disable-hover icon-left">
+      <icon role="img" text="" class="ion-ios-text" aria-label="text"></icon>
+      <div>64 Comments</div>
+    </button><p class="time-ago" item-left="">
+      30yr ago
+    </p><ion-item-content>
+
+
+
+  </ion-item-content></ion-item>
+
+</ion-card>
+
+
+<ion-card>
+
+  <ion-item class="item"><ion-avatar item-left="">
+      <img (click)="showProfile()" src="http://ionicframework.com/docs/v2/components/demo/img/ian-avatar.png">
+    </ion-avatar><ion-item-content>
+
+    <h2>Dr. Ian Malcolm</h2>
+    <p>June 28, 1990</p>
+  </ion-item-content></ion-item>
+
+  <img (click)="showLook()" src="http://www.trbimg.com/img-55248585/turbine/la-ar-kristen-stewart-fashion-news-20150407">
+
+
+  <ion-card-content>
+  <p>Your scientists were so preoccupied with whether or not they could, that they didn't stop to think if they should.</p>
+  </ion-card-content>
+
+  <ion-item actions="" class="demo-card item"><button clear="" item-left="" primary="" class="disable-hover icon-left">
+        <icon role="img" thumbs-up="" class="ion-ios-thumbs-up" aria-label="thumbs up"></icon>
+        <div>46 Likes</div>
+      </button><button clear="" item-left="" primary="" class="disable-hover icon-left">
+        <icon role="img" text="" class="ion-ios-text" aria-label="text"></icon>
+        <div>66 Comments</div>
+      </button><p class="time-ago" item-left="">2d ago</p><ion-item-content>
+  </ion-item-content></ion-item>
+</ion-card>
+
+
+</scroll-content>
+<button fab fab-right  (click)="takePicture()">
+  <icon is-active="true" role="img" class="ion-ios-camera-outline" aria-label="ion-ios-camera-outline"></icon>
+</button>
+</ion-content>

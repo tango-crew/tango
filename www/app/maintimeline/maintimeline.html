@@ -1,0 +1,53 @@
+<ion-navbar>
+  <ion-nav-items primary="" style="opacity: 1;">
+      <button class="disable-hover icon-only" (click)="goToLogin()">
+        <icon contact="" role="img" class="ion-ios-contact" aria-label="contact"></icon>
+      </button>
+    </ion-nav-items>
+  <ion-title>MainTimeline Hair Dresser</ion-title>
+  <ion-nav-items secondary="" style="opacity: 1;">
+    <!-- <button class="disable-hover icon-only">
+      <icon role="img" search="" class="ion-ios-search" aria-label="search"></icon>
+    </button> -->
+    </ion-nav-items>
+</ion-navbar>
+<ion-content class="has-header components-demo cards-bg" style="opacity: 1; transform: translateX(0%) translateZ(0px);">
+  <scroll-content>
+    <ion-list>
+       <ion-item *ng-for="#look of looks">
+            <ion-card>
+              <div style="position: relative">
+                <div *ng-if="look.typeoflook == 'simple'">
+                  <img src="{{look.picture}}" (click)="showLookSimple()" />
+                </div>
+                <div *ng-if="look.typeoflook == 'hairdresser'">
+                  <img src="{{look.picture}}" (click)="showLook()"/>
+                </div>
+                <button class="fab-map disable-hover icon-only" fab="" fab-right="" fab-top="">
+                  <icon heart></icon>
+                </button>
+                <ion-avatar item-left="" style="position: absolute; right: 0; bottom: -38px; z-index: 3;">
+                  <img (click)="showProfile()" src="https://avatars.githubusercontent.com/u/5776988?v=3" style="max-width: 6rem; max-height: 6rem; border-radius: 6rem;">
+                </ion-avatar>
+              </div>
+              <ion-item>
+                <p>{{look.description}}</p>
+              </ion-item>
+              <ion-item actions="" class="demo-card item" style="padding-top: 15px; padding-bottom: 15px;">
+                  <button clear="" item-left="" primary="" class="disable-hover icon-left">
+                    <icon role="img" thumbs-up="" class="ion-ios-thumbs-up" aria-label="thumbs up"></icon>
+                    <div>12 Likes</div>
+                  </button>
+                  <button clear="" item-left="" primary="" class="disable-hover icon-left">
+                    <icon role="img" text="" class="ion-ios-text" aria-label="text"></icon>
+                    <div>4 Comments</div>
+                  </button>
+                  <p class="time-ago" item-left="">
+                    11h ago
+                  </p>
+                </ion-item>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+</scroll-content>
+</ion-content>

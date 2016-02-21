@@ -1,0 +1,54 @@
+<ion-navbar *navbar>
+  <ion-nav-items primary="" style="opacity: 1;">
+      <button class="disable-hover icon-only" (click)="showProfile()">
+        <icon contact="" role="img" class="ion-ios-contact" aria-label="contact"></icon>
+      </button>
+    </ion-nav-items>
+  <ion-title>Timeline Hair Dresser</ion-title>
+</ion-navbar>
+<ion-content class="has-header components-demo cards-bg" style="opacity: 1; transform: translateX(0%) translateZ(0px);">
+  <scroll-content>
+       <div *ng-for="#look of looks">
+         <ion-card>
+           <ion-item class="item">
+             <ion-avatar item-left="">
+               <img src="https://avatars.githubusercontent.com/u/5776988?v=3" (click)="showProfile()" />
+             </ion-avatar>
+             <ion-item-content>
+             <h2>Marty McFly</h2>
+             <p>November 5, 1955</p>
+           </ion-item-content>
+         </ion-item>
+
+           <div *ng-if="look.typeoflook == 'simple'">
+             <img src="{{look.picture}}" (click)="showLookSimple()" />
+           </div>
+           <div *ng-if="look.typeoflook == 'hairdresser'">
+             <img src="{{look.picture}}" (click)="showLook()"/>
+           </div>
+
+           <ion-item actions="" class="demo-card item">
+               <button clear="" item-left="" primary="" class="disable-hover icon-left">
+                 <icon role="img" thumbs-up="" class="ion-ios-thumbs-up" aria-label="thumbs up"></icon>
+                 <div>12 Likes</div>
+               </button>
+               <button clear="" item-left="" primary="" class="disable-hover icon-left">
+                 <icon role="img" text="" class="ion-ios-text" aria-label="text"></icon>
+                 <div>4 Comments</div>
+               </button>
+               <p class="time-ago" item-left="">
+                 11h ago
+               </p>
+             </ion-item>
+             <ion-item>
+               <ion-card-content>
+               <p>{{look.description}}</p>
+               </ion-card-content>
+             </ion-item>
+         </ion-card>
+       </div>
+  </scroll-content>
+  <button fab fab-right  (click)="takePicture()">
+  <icon is-active="true" role="img" class="ion-ios-camera-outline" aria-label="ion-ios-camera-outline"></icon>
+  </button>
+</ion-content>
