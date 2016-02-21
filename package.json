@@ -37,7 +37,10 @@
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    {
+      "platform": "android",
+      "locator": "browser"
+    }
   ],
   "scripts": {
     "start": "ionic serve --lab",
