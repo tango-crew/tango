@@ -7,3 +7,7 @@
 .flex-center > * {
   margin: auto;
 }
+
+input[type=submit] {
+  @extend button
+}
