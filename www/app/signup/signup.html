@@ -6,7 +6,7 @@
     <ion-card>
         <ion-card-content>
             <ion-list inset>
-                <form (ng-submit)="signUp()" #hf="form">
+                <form id="sign-up-form" (ng-submit)="signUp()" #hf="form">
                     <ion-input floating-label>
                         <ion-label>Nome</ion-label>
                         <input [(ng-model)]="user.name" ng-control="name" #name="form" type="text" required>
@@ -29,11 +29,10 @@
 
                     <ion-input floating-label>
                         <ion-label>Confirme sua Senha</ion-label>
-                        <input [(ng-model)]="user.confirm_password" ng-control="confirm_password" #confirm_password="form" type="password" required>
+                        <input [(ng-model)]="user.password_confirmation" ng-control="password_confirmation" #password_confirmation="form" type="password" required>
                     </ion-input>
 
-                    <br>
-                    <button type="submit" [disabled]="!hf.form.valid" full>Cadastrar</button>
+                    <input type="submit" [disabled]="!hf.form.valid" value="Cadastrar" full>
                 </form>
             </ion-list>
         </ion-card-content>

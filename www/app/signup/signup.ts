@@ -9,22 +9,23 @@ import {User} from './../models/user'
   templateUrl: 'app/signup/signup.html'
 })
 export class SignUpPage {
-  constructor(events:Events, users:UsersService) {
-    this.events = events;
-    this.users = users;
+  user: User;
+  passwords_are_equal: boolean;
+
+  constructor(private events:Events, private users:UsersService) {
     this.user = new User();
+    this.passwords_are_equal = true;
   }
 
   signUp() {
-    alert('sign up: ' + JSON.stringify(this.user));
-    //this.users
-    //  .create(
-    //    {"user": user}
-    //  )
-    //  .subscribe(
-    //    (response) => this.notifyWith(response.user),
-    //    (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
-    //  );
+    this.users
+      .create(
+        {"user": this.user}
+      )
+      .subscribe(
+        (response) => this.notifyWith(response.user),
+        (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
+      );
   }
 
   notifyWith(user) {
