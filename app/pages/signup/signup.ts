@@ -1,12 +1,10 @@
-'use strict';
-
-import {Page, Events} from 'ionic/ionic';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-import {UsersService} from './../services/users'
-import {User} from './../models/user'
+import {Page, Events} from 'ionic-framework/ionic';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {UsersService} from '../../services/users'
+import {User} from '../../models/user'
 
 @Page({
-  templateUrl: 'app/signup/signup.html'
+  templateUrl: 'build/pages/signup/signup.html'
 })
 export class SignUpPage {
   user: User;

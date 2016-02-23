@@ -1,13 +1,11 @@
-import {Injectable} from 'angular2/angular2';
+import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 
 @Injectable()
 export class UsersService {
-  public endpoint = 'http://tango-api.herokuapp.com';
+  public endpoint:string = 'http://tango-api.herokuapp.com';
 
-  constructor(http: Http) {
-    this.http = http;
-  }
+  constructor(private http: Http) {}
 
   all() {
     return this.http.get(`${this.endpoint}/users`)

@@ -1,9 +1,13 @@
-bower_components/
+# Specifies files to intentionally ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*.log
+*.swp
+
 node_modules/
 www/build/
 platforms/
 plugins/
-*.swp
+
 .DS_Store
 Thumbs.db
-ionic.project

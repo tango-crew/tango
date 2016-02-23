@@ -1,9 +1,12 @@
+import {Injectable} from 'angular2/core';
+
 /**
  * Angular wrapper for the OpenFB library
  * Allows you to use OpenFB "the Angular 2 way":
  *  - As an Angular service instead of a global object
  *  - Using promises instead of callbacks
  */
+@Injectable()
 export class FacebookService {
   constructor() {
   }
@@ -70,4 +73,4 @@ export class FacebookService {
       );
     });
   }
-}
+};

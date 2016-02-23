@@ -1,4 +1,4 @@
-import {User} from './../../www/app/models/user'
+import {User} from '../../app/models/user'
 
 describe('User', () => {
   describe('#avatar', () => {

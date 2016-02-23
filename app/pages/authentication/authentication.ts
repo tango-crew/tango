@@ -1,20 +1,16 @@
-'use strict';
-
-import {Page, NavController, Events} from 'ionic/ionic';
-import {FacebookService} from './../services/facebook'
-import {UsersService} from './../services/users'
-import {SignUpPage} from './../signup/signup'
+import {Page, NavController, Events} from 'ionic-framework/ionic';
+import {FacebookService} from '../../services/facebook'
+import {UsersService} from '../../services/users'
+import {SignUpPage} from '../signup/signup'
 
 @Page({
-  templateUrl: 'app/authentication/authentication.html'
+  templateUrl: 'build/pages/authentication/authentication.html'
 })
 export class AuthenticationPage {
-  constructor(events:Events, facebookService:FacebookService, users:UsersService, nav:NavController) {
-    this.facebookService = facebookService;
-    this.events = events;
-    this.users = users;
-    this.nav = nav;
-  }
+  constructor(private events:Events,
+              private facebookService:FacebookService,
+              private users:UsersService,
+              private nav:NavController) {}
 
   signup() {
     this.nav.push(SignUpPage);

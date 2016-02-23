@@ -1,15 +1,16 @@
-import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic/ionic';
+import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-framework/ionic';
 import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
-import {provide} from 'angular2/angular2';
+import {provide, Type, OnInit} from 'angular2/core';
+import 'rxjs/Rx';
 
-
-import {AuthenticationPage} from './authentication/authentication';
-import {ProfilePage} from './profile/profile';
-import {FacebookService} from './services/facebook'
-import {UsersService} from './services/users'
+import {AuthenticationPage} from './pages/authentication/authentication';
+import {ProfilePage} from './pages/profile/profile';
+import {FacebookService} from './services/facebook';
+import {UsersService} from './services/users';
+import {User} from './models/user'
 
 @App({
-  templateUrl: 'app/app.html',
+  templateUrl: 'build/app.html',
   providers: [
     FacebookService,
     UsersService,
@@ -23,15 +24,20 @@ import {UsersService} from './services/users'
         deps: [XHRBackend, RequestOptions]
       }
     )
-  ]
+  ],
+  config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
 })
-class MyApp {
-  constructor(app: IonicApp, platform: Platform, events: Events, facebookService: FacebookService) {
-    this.app = app;
-    this.platform = platform;
-    this.events = events;
-    this.facebookService = facebookService;
-    this.initializeApp();
+class TangoApp implements OnInit{
+  rootPage: Type = AuthenticationPage;
+  storage: Storage;
+  pages: Array<{title: string, component: Type}>;
+  user: User;
+
+  constructor(
+    private app: IonicApp,
+    private platform: Platform,
+    private events: Events,
+    private facebookService: FacebookService) {
   }
 
   handleUserAuthenticated(user) {
@@ -47,11 +53,11 @@ class MyApp {
     ]
   }
 
-  initializeApp() {
+  ngOnInit() {
     this.platform.ready().then(() => {
-      if (typeof StatusBar !== 'undefined') {
-        StatusBar.styleDefault();
-      }
+      //if (typeof StatusBar !== 'undefined') {
+      //  StatusBar.styleDefault();
+      //}
 
       this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
@@ -68,13 +74,11 @@ class MyApp {
           this.setUser(user);
           this.pages = this.menuPages();
           this.rootPage = this.menuPages()[0].component;
-        } else {
-          this.rootPage = AuthenticationPage;
         }
       });
   }
 
-  setUser(user) {
+  setUser(user: User) {
     this.user = user;
   }
 

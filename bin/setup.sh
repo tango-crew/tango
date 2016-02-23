@@ -6,7 +6,7 @@ echo '>>> Install Cordova <<<'
 npm install -g cordova
 
 echo '>>> Install Ionic 2 <<<'
-npm install -g ionic@alpha
+npm install -g ionic@beta
 
 echo '>>> Installing dependencies <<<'
 npm install

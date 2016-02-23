@@ -1,4 +1,4 @@
-<ion-menu [content]="content" *ng-if="user">
+<ion-menu [content]="content" *ngIf="user">
 
     <ion-toolbar>
         <ion-title>{{user.name}}</ion-title>
@@ -6,7 +6,7 @@
 
     <ion-content>
         <ion-list>
-            <button ion-item *ng-for="#p of pages" (click)="openPage(p)">
+            <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
                 {{p.title}}
             </button>
 
@@ -15,4 +15,4 @@
     </ion-content>
 </ion-menu>
 
-<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
