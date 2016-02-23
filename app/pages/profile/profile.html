@@ -1,12 +1,12 @@
 <ion-navbar *navbar>
-    <a menu-toggle>
-        <icon menu></icon>
-    </a>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
 
     <ion-title>Olá {{user.name}}</ion-title>
 </ion-navbar>
 
-<ion-content padding class="profile" *ng-if="user">
+<ion-content padding class="profile">
     <ion-card>
         <img src="{{user.avatar()}}" />
         <ion-card-content>

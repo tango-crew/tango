@@ -6,11 +6,12 @@
 
     <ion-content>
         <ion-list>
-            <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
-                {{p.title}}
+            <button ion-item *ngFor="#p of pages" (click)="openPage(p)">
+                <ion-icon name="person"></ion-icon> {{p.title}}
             </button>
-
-            <button dark clear (click)="logout()"><icon log-out></icon> Sair</button>
+            <button dark clear (click)="logout()">
+                <ion-icon name="log-out"></ion-icon> Sair
+            </button>
         </ion-list>
     </ion-content>
 </ion-menu>

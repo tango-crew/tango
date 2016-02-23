@@ -1,6 +1,6 @@
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-framework/ionic';
 import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
-import {provide, Type, OnInit} from 'angular2/core';
+import {provide, Type} from 'angular2/core';
 import 'rxjs/Rx';
 
 import {AuthenticationPage} from './pages/authentication/authentication';
@@ -17,7 +17,7 @@ import {User} from './models/user'
     provide(Http,
       {
         useFactory: (backend, defaultOptions) => {
-          defaultOptions.headers.append('X-Tango-Api-Token', 'jD1yROsja0E59l4sK4LqPRqFSfPpIQIQ');
+          defaultOptions.headers.append('X-Tango-Api-Token', '9nv-bG-ccT942CPmEv5sG5UdXaMDsOJC');
           defaultOptions.headers.append('Content-Type', 'application/json');
           return new Http(backend, defaultOptions);
         },
@@ -27,8 +27,8 @@ import {User} from './models/user'
   ],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
 })
-class TangoApp implements OnInit{
-  rootPage: Type = AuthenticationPage;
+class TangoApp {
+  rootPage: Type;
   storage: Storage;
   pages: Array<{title: string, component: Type}>;
   user: User;
@@ -38,6 +38,7 @@ class TangoApp implements OnInit{
     private platform: Platform,
     private events: Events,
     private facebookService: FacebookService) {
+    this.initialize();
   }
 
   handleUserAuthenticated(user) {
@@ -53,7 +54,7 @@ class TangoApp implements OnInit{
     ]
   }
 
-  ngOnInit() {
+  initialize() {
     this.platform.ready().then(() => {
       //if (typeof StatusBar !== 'undefined') {
       //  StatusBar.styleDefault();
@@ -74,6 +75,8 @@ class TangoApp implements OnInit{
           this.setUser(user);
           this.pages = this.menuPages();
           this.rootPage = this.menuPages()[0].component;
+        } else {
+          this.rootPage = AuthenticationPage;
         }
       });
   }
@@ -85,6 +88,7 @@ class TangoApp implements OnInit{
   logout() {
     this.openPage({component: AuthenticationPage});
     this.storage.remove('user');
+    this.user = null;
   }
 
   openPage(page) {
