@@ -31,4 +31,16 @@ export class UsersService {
     return this.http.delete(`${this.endpoint}/users/${id}`)
       .map(res => res.json());
   }
+
+  signIn(email: string, password: stringng) {
+    return this.http.post(
+      `${this.endpoint}/users/sign_in`,
+      JSON.stringify({
+        "user": {
+          "email": email,
+          "password": password
+        }
+      })
+    ).map(res => res.json());
+  }
 }
