@@ -7,23 +7,25 @@
         <ion-card-content>
             <ion-list inset>
 
-                <ion-item>
-                    <ion-label floating>E-mail</ion-label>
-                    <ion-input type="email"></ion-input>
-                </ion-item>
+                <form id="sign-in-form" (ngSubmit)="signIn()" #uf="ngForm">
+                    <ion-item>
+                        <ion-label floating>E-mail</ion-label>
+                        <ion-input [(ngModel)]="user.email" ngControl="email" #email="ngForm" type="email" required></ion-input>
+                    </ion-item>
 
-                <ion-item>
-                    <ion-label floating>Senha</ion-label>
-                    <ion-input type="password"></ion-input>
-                </ion-item>
+                    <ion-item>
+                        <ion-label floating>Senha</ion-label>
+                        <ion-input [(ngModel)]="user.password" ngControl="password" #password="ngForm" type="password" required></ion-input>
+                    </ion-item>
+
+                    <br>
+
+                    <button [disabled]="!uf.form.valid" full>Entrar</button>
+                </form>
 
                 <br>
-
-                <button full>Entrar</button>
-
                 <br>
-                <br>
-                <p>Novo usuário? <a href="#" (click)="signup()">Cadastra-se</a> </p>
+                <p>Novo usuário? <a href="#" (click)="signUp()">Cadastra-se</a> </p>
             </ion-list>
         </ion-card-content>
     </ion-card>

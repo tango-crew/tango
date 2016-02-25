@@ -1,19 +1,33 @@
 import {Page, NavController, Events} from 'ionic-framework/ionic';
-import {FacebookService} from '../../services/facebook'
-import {UsersService} from '../../services/users'
-import {SignUpPage} from '../signup/signup'
+import {FacebookService} from '../../services/facebook';
+import {UsersService} from '../../services/users';
+import {SignUpPage} from '../signup/signup';
+import {User} from '../../models/user';
 
 @Page({
   templateUrl: 'build/pages/authentication/authentication.html'
 })
 export class AuthenticationPage {
+  user:User;
+
   constructor(private events:Events,
               private facebookService:FacebookService,
               private users:UsersService,
-              private nav:NavController) {}
+              private nav:NavController) {
+    this.user = new User();
+  }
 
-  signup() {
+  signUp() {
     this.nav.push(SignUpPage);
+  }
+
+  signIn() {
+    this.users
+      .signIn(this.user.email, this.user.password)
+      .subscribe(
+        response => this.notifyWith(response.user),
+        error => alert(`erro ao buscar usuários: ${JSON.stringify(error)}`)
+      );
   }
 
   login() {
