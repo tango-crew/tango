@@ -7,7 +7,8 @@ import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
 import {FacebookService} from './services/facebook';
 import {UsersService} from './services/users';
-import {User} from './models/user'
+import {User} from './models/user';
+import {PushNotifications} from './services/push_notifications';
 
 @App({
   templateUrl: 'build/app.html',
@@ -17,7 +18,7 @@ import {User} from './models/user'
     provide(Http,
       {
         useFactory: (backend, defaultOptions) => {
-          defaultOptions.headers.append('X-Tango-Api-Token', '9nv-bG-ccT942CPmEv5sG5UdXaMDsOJC');
+          defaultOptions.headers.append('X-Tango-Api-Token', 'TANGO_API_TOKEN');
           defaultOptions.headers.append('Content-Type', 'application/json');
           return new Http(backend, defaultOptions);
         },
@@ -60,6 +61,8 @@ class TangoApp {
       //  StatusBar.styleDefault();
       //}
 
+      PushNotifications.start();
+
       this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
 
@@ -88,14 +91,11 @@ class TangoApp {
   logout() {
     this.openPage({component: AuthenticationPage});
     this.storage.remove('user');
-    this.user = null;
+    // TODO I dunno why if I set it to null in the exact moment the view stays blocked
+    setTimeout(() => this.user = null, 1000);
   }
 
   openPage(page) {
-    if (this.app.getComponent('menu')) {
-      this.app.getComponent('menu').close();
-    }
-
     let nav = this.app.getComponent('nav');
     nav.setRoot(page.component);
   }
