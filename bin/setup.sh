@@ -15,8 +15,8 @@ echo '>>> Add Android Platform <<<'
 ionic platform add android
 
 echo '>>> Creating signatures to Android <<<'
-DEBUG_SIGNING_PATH=platforms/android/test-signing.properties
-RELEASE_SIGNING_PATH=platforms/android/teste2-signing.properties
+DEBUG_SIGNING_PATH=platforms/android/debug-signing.properties
+RELEASE_SIGNING_PATH=platforms/android/release-signing.properties
 
 for signing_path in $DEBUG_SIGNING_PATH $RELEASE_SIGNING_PATH
 do
