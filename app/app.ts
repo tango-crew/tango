@@ -57,9 +57,9 @@ class TangoApp {
 
   initialize() {
     this.platform.ready().then(() => {
-      //if (typeof StatusBar !== 'undefined') {
-      //  StatusBar.styleDefault();
-      //}
+      if (typeof StatusBar !== 'undefined') {
+        StatusBar.styleDefault();
+      }
 
       PushNotifications.start();
 
