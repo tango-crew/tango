@@ -60,6 +60,10 @@ ionic upload
 - [Not an issue](https://twitter.com/paul_irish/status/311610425617838081) for today's mobile browsers
 - No performance impacts have been found
 
-#### Webpack
+### Webpack
 
 - Starter project is already setup to build Ionic using [Webpack](http://webpack.github.io/)
+
+## How to contribute :heart_eyes:
+
+Follow the [GitHub Flow](https://guides.github.com/introduction/flow/)
