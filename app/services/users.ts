@@ -32,7 +32,7 @@ export class UsersService {
       .map(res => res.json());
   }
 
-  signIn(email: string, password: stringng) {
+  signIn(email: string, password: string) {
     return this.http.post(
       `${this.endpoint}/users/sign_in`,
       JSON.stringify({
