@@ -58,15 +58,6 @@ We are currently working on completing a few core Ionic 1 features:
 
 - Collection repeat (known as Virtual Scrolling in v2) is not quite ready
 
-### Current Angular 2 known issues:
-
-- Angular 2 is still in alpha and is not production ready
-- Angular team has first focused on developing what the core of Angular 2 "is"
-- Angular 2 filesize has not been optimized for minification yet
-- Angular 2 bootstrap time has not been optimized yet
-- As Angular 2 reaches beta there will be significant performance improvements
-
-
 ### ES6/Typescript
 
 - Ionic's source is written using [Typescript](http://www.typescriptlang.org/)
