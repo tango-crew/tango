@@ -29,8 +29,6 @@ Execute the following command:
 
 `ionic emulate ios|android`
 
-**Running the *setup.sh* you'll have the Android Platform set :heart_eyes:**
-
 ## Preview
 
 You can preview the app installing the [Ionic View](http://view.ionic.io/) on your cell phone. So you can run the following command:
