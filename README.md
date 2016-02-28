@@ -41,22 +41,10 @@ You can preview the app installing the [Ionic View](http://view.ionic.io/) on yo
 ionic upload
 ```
 
-__* Ionic 2 will be integrated within the [Ionic CLI](https://www.npmjs.com/package/ionic), [Ionic Lab](http://lab.ionic.io/), [Ionic Creator](http://creator.ionic.io/) (basically every Ionic tool), to make building an Ionic app even easier.__
-
 ## References
 
 * [Ionic Documentation](http://ionicframework.com/docs/v2/)
 * [Angular 2 Documentation](https://angular.io/docs/ts/latest/index.html)
-
-## Things to keep in mind
-
-Ionic 2 is alpha, and so is Angular 2. There are number of things being actively worked on that aren't quite ready yet. Here are some things to keep in mind as you try out Ionic 2 and Angular 2:
-
-### Missing Ionic 1 features
-
-We are currently working on completing a few core Ionic 1 features:
-
-- Collection repeat (known as Virtual Scrolling in v2) is not quite ready
 
 ### ES6/Typescript
 
