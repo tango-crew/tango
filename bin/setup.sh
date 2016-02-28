@@ -11,8 +11,8 @@ npm install -g ionic@beta
 echo '>>> Installing dependencies <<<'
 npm install
 
-echo '>>> Add Android Platform <<<'
-ionic platform add android
+echo '>>> Restoring the Ionic state<<<'
+ionic state restore
 
 echo '>>> Creating signatures to Android <<<'
 DEBUG_SIGNING_PATH=platforms/android/debug-signing.properties
