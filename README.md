@@ -23,13 +23,11 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 6. `./bin/setup.sh`
 7. `npm start`
 
-### Platforms
+## Emulate
 
-Add an IOS or Android platform support it is very simple:
+Execute the following command:
 
-1. `ionic platform add ios|android` 
-2. `ionic build ios|android`
-3. `ionic emulate ios|android`
+`ionic emulate ios|android`
 
 **Running the *setup.sh* you'll have the Android Platform set :heart_eyes:**
 
