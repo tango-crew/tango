@@ -25,6 +25,7 @@
     "cordova-plugin-inappbrowser",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
+    "cordova-plugin-camera",
     "ionic-plugin-keyboard",
     "onesignal-cordova-plugin"
   ],
