@@ -8,7 +8,7 @@
 
 <ion-content padding class="profile">
     <ion-card>
-        <img src="{{user.avatar()}}" />
+        <img src="{{user.avatar()}}" (click)="choosePhoto()" />
         <ion-card-content>
             <ion-item>
                 <icon mail></icon> {{user.email}}
