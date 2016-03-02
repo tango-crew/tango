@@ -8,6 +8,7 @@ export class User {
   birthday:string;
   password:string;
   password_confirmation:string;
+  image_url:string;
 
   constructor() {
   }
@@ -16,7 +17,7 @@ export class User {
     if (this.integration_type === 1) {
       return `https://graph.facebook.com/${this.integration_id}/picture?width=400&height=400`;
     } else {
-      return null;
+      return this.image_url || 'img/avatar.png';
     }
   }
 }
