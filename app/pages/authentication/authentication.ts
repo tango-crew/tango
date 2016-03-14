@@ -25,7 +25,7 @@ export class AuthenticationPage {
     this.users
       .signIn(this.user.email, this.user.password)
       .subscribe(
-        response => this.notifyWith(response.user),
+        user => this.notifyWith(user),
         error => alert(`erro ao buscar usuários: ${JSON.stringify(error)}`)
       );
   }
@@ -54,8 +54,8 @@ export class AuthenticationPage {
     this.users
       .all()
       .subscribe(
-        (response) => {
-          let userFromApi = response.users.find(userFromFacebook);
+        (users) => {
+          let userFromApi = users.find(userFromFacebook);
 
           if (!userFromApi) {
             this.signUpUser(user);
@@ -80,7 +80,7 @@ export class AuthenticationPage {
         }
       )
       .subscribe(
-        (response) => this.notifyWith(response.user),
+        (user) => this.notifyWith(user),
         (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
       );
   }
