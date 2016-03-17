@@ -2,7 +2,7 @@
     <ion-title>Novo Usuário!</ion-title>
 </ion-navbar>
 
-<ion-content padding class="sign-up">
+<ion-content class="sign-up">
     <ion-card>
         <ion-card-content>
             <ion-list inset>
@@ -15,11 +15,6 @@
                     <ion-item>
                         <ion-label floating>E-mail</ion-label>
                         <ion-input [(ngModel)]="user.email" ngControl="email" #email="ngForm" type="email" required></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label floating>Biografia</ion-label>
-                        <ion-textarea [(ngModel)]="user.bio" id="bio" cols="30" rows="3"></ion-textarea>
                     </ion-item>
 
                     <ion-item>
@@ -48,13 +43,13 @@
         <ion-card-content>
             <div class="flex-center">
                 <span>Inscrever-se com:</span>
-                <button default (click)="login()">
+                <button default small (click)="login()">
                     <ion-icon name="logo-facebook"></ion-icon>
                 </button>
-                <button light>
+                <button light small>
                     <ion-icon name="logo-instagram"></ion-icon>
                 </button>
-                <button danger>
+                <button danger small>
                     <ion-icon name="logo-googleplus"></ion-icon>
                 </button>
             </div>
