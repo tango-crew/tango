@@ -3,16 +3,40 @@
         <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>Olá {{user.name}}</ion-title>
+    <ion-title>Meu Perfil</ion-title>
 </ion-navbar>
 
-<ion-content padding class="profile">
+<ion-content class="profile">
     <ion-card>
-        <img src="{{user.avatar()}}" (click)="choosePhoto()" />
+        <ion-card-header>
+            <ion-row>
+                <ion-col offset-33 width-33>
+                    <ion-avatar>
+                        <img src="{{image_url || user.avatar()}}"/>
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <div>
+                    <h1>{{user.name}}</h1>
+                </div>
+            </ion-row>
+            <ion-row>
+                <div>
+                    <p>{{user.bio}}</p>
+                </div>
+            </ion-row>
+        </ion-card-header>
+
         <ion-card-content>
             <ion-item>
-                <icon mail></icon> {{user.email}}
+                <ion-icon name="mail"></ion-icon>
+                {{user.email}}
             </ion-item>
         </ion-card-content>
     </ion-card>
+
+    <button fab danger fab-bottom fab-right (click)="edit()">
+        <ion-icon name="create"></ion-icon>
+    </button>
 </ion-content>
