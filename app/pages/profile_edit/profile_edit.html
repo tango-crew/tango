@@ -13,8 +13,11 @@
         <ion-card-header>
             <ion-row class="sub-header">
                 <ion-col offset-33 width-33>
-                    <ion-avatar>
-                        <img src="{{image_url || user.avatar()}}" (click)="choosePhoto()"/>
+                    <ion-avatar (click)="choosePhoto()">
+                        <img src="{{image_url || user.avatar()}}"/>
+                        <button outline clear small dark fab fab-top fab-right>
+                            <ion-icon name="camera"></ion-icon>
+                        </button>
                     </ion-avatar>
                 </ion-col>
             </ion-row>
