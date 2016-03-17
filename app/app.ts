@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
 import {FacebookService} from './services/facebook';
+import {AmazonS3Service} from './services/amazon_s3';
 import {UsersService} from './services/users';
 import {User} from './models/user';
 import {PushNotifications} from './services/push_notifications';
@@ -15,6 +16,7 @@ import {PushNotifications} from './services/push_notifications';
   providers: [
     FacebookService,
     UsersService,
+    AmazonS3Service,
     provide(Http,
       {
         useFactory: (backend, defaultOptions) => {
@@ -62,6 +64,11 @@ class TangoApp {
       }
 
       PushNotifications.start();
+
+      AmazonS3Service.config({
+        accessKeyId: 'AWS_ACCESS_KEY',
+        secretAccessKey: 'AWS_SECRET_KEY'
+      });
 
       this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
