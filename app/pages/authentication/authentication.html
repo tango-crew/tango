@@ -2,31 +2,36 @@
     <ion-title>Seja bem vindo!</ion-title>
 </ion-navbar>
 
-<ion-content padding class="authentication">
+<ion-content class="authentication">
     <ion-card>
         <ion-card-content>
-            <ion-list inset>
 
-                <form id="sign-in-form" (ngSubmit)="signIn()" #uf="ngForm">
+            <ion-item *ngIf="signInInvalid" item-center>
+                <p danger>E-mail ou Senha incorretos!</p>
+            </ion-item>
+            <form id="sign-in-form" (ngSubmit)="signIn()" #uf="ngForm">
+                <ion-list inset>
                     <ion-item>
                         <ion-label floating>E-mail</ion-label>
-                        <ion-input [(ngModel)]="user.email" ngControl="email" #email="ngForm" type="email" required></ion-input>
+                        <ion-input [(ngModel)]="user.email" ngControl="email" #email="ngForm" type="email"
+                                   required></ion-input>
                     </ion-item>
 
                     <ion-item>
                         <ion-label floating>Senha</ion-label>
                         <ion-input [(ngModel)]="user.password" ngControl="password" #password="ngForm" type="password" required></ion-input>
                     </ion-item>
+                    <b></b>
+                </ion-list>
+                <ion-item>
+                    <ion-label><button full [disabled]="!uf.form.valid">Entrar</button></ion-label>
+                </ion-item>
+            </form>
 
-                    <br>
+            <ion-item>
+                <p>Novo usuário? <a href="javascript: void(0);" (click)="signUp()">Cadastra-se</a></p>
+            </ion-item>
 
-                    <button [disabled]="!uf.form.valid" full>Entrar</button>
-                </form>
-
-                <br>
-                <br>
-                <p>Novo usuário? <a href="javascript: void(0);" (click)="signUp()">Cadastra-se</a> </p>
-            </ion-list>
         </ion-card-content>
     </ion-card>
 
@@ -38,9 +43,15 @@
         <ion-card-content>
             <div class="flex-center">
                 <span>Entrar com:</span>
-                <button default (click)="login()"><ion-icon name="logo-facebook"></ion-icon></button>
-                <button light><ion-icon name="logo-instagram"></ion-icon></button>
-                <button danger><ion-icon name="logo-googleplus"></ion-icon></button>
+                <button default small (click)="login()">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </button>
+                <button light small>
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </button>
+                <button danger small>
+                    <ion-icon name="logo-googleplus"></ion-icon>
+                </button>
             </div>
         </ion-card-content>
     </ion-card>

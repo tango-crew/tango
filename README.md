@@ -65,3 +65,6 @@ ionic upload
 ## How to contribute :heart_eyes:
 
 Follow the [GitHub Flow](https://guides.github.com/introduction/flow/)
+
+até trocar o facebook plugin usar: 
+configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
