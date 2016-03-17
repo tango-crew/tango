@@ -8,7 +8,11 @@ export class User {
   birthday:string;
   password:string;
   password_confirmation:string;
-  image_url:string;
+  profile_image_id:string;
+  profile_image_filename:string;
+  profile_image_content_type:string;
+  profile_image_size:integer;
+  remote_profile_image_url:string;/* Used only to upload image */
 
   constructor() {
   }
