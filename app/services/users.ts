@@ -1,40 +1,16 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
+import {ResourceBaseService} from './resource_base';
 
 @Injectable()
-export class UsersService {
-  public endpoint:string = 'http://tango-api.herokuapp.com';
-
-  constructor(private http: Http) {}
-
-  all() {
-    return this.http.get(`${this.endpoint}/users`)
-      .map(res => res.json());
-  }
-
-  get(id) {
-    return this.http.get(`${this.endpoint}/users/${id}`)
-      .map(res => res.json());
-  }
-
-  create(params) {
-    return this.http.post(`${this.endpoint}/users`, JSON.stringify(params))
-      .map(res => res.json());
-  }
-
-  update(id: Number, params) {
-    return this.http.put(`${this.endpoint}/users/${id}`, JSON.stringify(params))
-      .map(res => res.json());
-  }
-
-  destroy(id: Number) {
-    return this.http.delete(`${this.endpoint}/users/${id}`)
-      .map(res => res.json());
+export class UsersService extends ResourceBaseService {
+  constructor(private http: Http) {
+    super(http, 'users');
   }
 
   signIn(email: string, password: string) {
     return this.http.post(
-      `${this.endpoint}/users/sign_in`,
+      `${this.endpoint}/${this.resource}/sign_in`,
       JSON.stringify({
         "user": {
           "email": email,

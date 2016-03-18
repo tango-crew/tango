@@ -21,7 +21,7 @@ export class SignUpPage {
         {"user": this.user}
       )
       .subscribe(
-        (response) => this.notifyWith(response.user),
+        (user) => this.notifyWith(user),
         (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
       );
   }

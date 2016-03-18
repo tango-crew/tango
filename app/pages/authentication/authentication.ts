@@ -9,6 +9,7 @@ import {User} from '../../models/user';
 })
 export class AuthenticationPage {
   user:User;
+  signInInvalid:boolean = false;
 
   constructor(private events:Events,
               private facebookService:FacebookService,
@@ -22,11 +23,18 @@ export class AuthenticationPage {
   }
 
   signIn() {
+    this.signInInvalid = false;
+
     this.users
       .signIn(this.user.email, this.user.password)
       .subscribe(
-        response => this.notifyWith(response.user),
-        error => alert(`erro ao buscar usuários: ${JSON.stringify(error)}`)
+        user => {
+          if (user)
+            this.notifyWith(user);
+          else
+            this.signInInvalid = true;
+        },
+        error => this.signInInvalid = true
       );
   }
 
@@ -54,8 +62,8 @@ export class AuthenticationPage {
     this.users
       .all()
       .subscribe(
-        (response) => {
-          let userFromApi = response.users.find(userFromFacebook);
+        (users) => {
+          let userFromApi = users.find(userFromFacebook);
 
           if (!userFromApi) {
             this.signUpUser(user);
@@ -80,7 +88,7 @@ export class AuthenticationPage {
         }
       )
       .subscribe(
-        (response) => this.notifyWith(response.user),
+        (user) => this.notifyWith(user),
         (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
       );
   }

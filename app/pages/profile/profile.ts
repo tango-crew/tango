@@ -1,19 +1,26 @@
-import {Page, Storage, LocalStorage} from 'ionic-framework/ionic';
-import {User} from '../../models/user'
+import {Page, Storage, LocalStorage, NavController} from 'ionic-framework/ionic';
+import {Camera} from 'ionic-native';
+import {User} from '../../models/user';
+import {ProfileEditPage} from '../profile_edit/profile_edit';
+import {AmazonS3Service} from '../../services/amazon_s3';
+import {S3SignedUrlPipe} from '../../pipes/s3-signed-url.pipe';
 
 @Page({
-  templateUrl: 'build/pages/profile/profile.html'
+  templateUrl: 'build/pages/profile/profile.html',
+  pipes: [S3SignedUrlPipe]
 })
 export class ProfilePage {
-  user: User;
+  user:User;
 
-  constructor() {
-    this.initialize();
-  }
-
-  initialize() {
+  constructor(private navController:NavController) {
     new Storage(LocalStorage)
       .get('user')
-      .then((user) => this.user = Object.assign(new User(), JSON.parse(user)));
+      .then(user => {
+        this.user = Object.assign(new User(), JSON.parse(user));
+      });
+  }
+
+  edit() {
+    this.navController.push(ProfileEditPage, {user: this.user});
   }
 }

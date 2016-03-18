@@ -1,0 +1,42 @@
+<ion-navbar *navbar>
+    <ion-title>Editar Perfil</ion-title>
+
+    <ion-buttons end>
+        <button (click)="save()" primary clear small>
+            Salvar
+        </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content class="profile-edit">
+    <ion-card>
+        <ion-card-header>
+            <ion-row class="sub-header">
+                <ion-col offset-33 width-33>
+                    <ion-avatar (click)="choosePhoto()">
+                        <img src="{{image_url || ((user.profile_image_id | s3SignedUrl) || user.avatar())}}"/>
+                        <button outline clear small dark fab fab-top fab-right>
+                            <ion-icon name="camera"></ion-icon>
+                        </button>
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-list inset>
+                <form id="update-form" #hf="ngForm">
+                    <ion-item>
+                        <ion-label floating>Nome</ion-label>
+                        <ion-input [(ngModel)]="user.name" ngControl="name" #name="ngForm" type="text" required></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Biografia</ion-label>
+                        <ion-textarea [(ngModel)]="user.bio" id="bio" cols="30" rows="3"></ion-textarea>
+                    </ion-item>
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

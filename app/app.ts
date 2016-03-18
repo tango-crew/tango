@@ -6,15 +6,18 @@ import 'rxjs/Rx';
 import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
 import {FacebookService} from './services/facebook';
+import {AmazonS3Service} from './services/amazon_s3';
 import {UsersService} from './services/users';
 import {User} from './models/user';
 import {PushNotifications} from './services/push_notifications';
+import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
 
 @App({
   templateUrl: 'build/app.html',
   providers: [
     FacebookService,
     UsersService,
+    AmazonS3Service,
     provide(Http,
       {
         useFactory: (backend, defaultOptions) => {
@@ -26,6 +29,7 @@ import {PushNotifications} from './services/push_notifications';
       }
     )
   ],
+  pipes: [S3SignedUrlPipe],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
 })
 class TangoApp {

@@ -1,0 +1,39 @@
+.profile-edit {
+  ion-card-header {
+    background-color: #F6F6F6;
+    padding: 0;
+  }
+
+  ion-avatar {
+    position: relative;
+    border-radius: 7rem;
+    box-shadow: 0px 0px 3px 0px;
+
+    button {
+      width: 25px;
+      height: 25px;
+      right: 0;
+      top: 0;
+
+      ion-icon {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  img {
+    max-width: 10rem;
+    max-height: 10rem;
+    border-radius: 8rem;
+    padding: 3px;
+  }
+
+  .ng-valid[required] {
+    //border-left: 5px solid #42A948;
+  }
+
+  .ng-invalid {
+    //border-left: 5px solid #a94442;
+  }
+}
+

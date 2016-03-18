@@ -8,6 +8,11 @@ export class User {
   birthday:string;
   password:string;
   password_confirmation:string;
+  profile_image_id:string;
+  profile_image_filename:string;
+  profile_image_content_type:string;
+  profile_image_size:integer;
+  remote_profile_image_url:string;/* Used only to upload image */
 
   constructor() {
   }
@@ -16,7 +21,7 @@ export class User {
     if (this.integration_type === 1) {
       return `https://graph.facebook.com/${this.integration_id}/picture?width=400&height=400`;
     } else {
-      return null;
+      return this.image_url || 'img/avatar.png';
     }
   }
 }
