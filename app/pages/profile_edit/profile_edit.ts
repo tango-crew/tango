@@ -4,9 +4,11 @@ import {AmazonS3Service} from '../../services/amazon_s3';
 import {UsersService} from '../../services/users';
 import {User} from '../../models/user'
 import {Camera} from "ionic-native/dist/index";
+import {S3SignedUrlPipe} from '../../pipes/s3-signed-url.pipe';
 
 @Page({
-  templateUrl: 'build/pages/profile_edit/profile_edit.html'
+  templateUrl: 'build/pages/profile_edit/profile_edit.html',
+  pipes: [S3SignedUrlPipe]
 })
 export class ProfileEditPage {
   image_url:string;

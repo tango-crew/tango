@@ -14,7 +14,7 @@
             <ion-row class="sub-header">
                 <ion-col offset-33 width-33>
                     <ion-avatar (click)="choosePhoto()">
-                        <img src="{{image_url || user.avatar()}}"/>
+                        <img src="{{image_url || ((user.profile_image_id | s3SignedUrl) || user.avatar())}}"/>
                         <button outline clear small dark fab fab-top fab-right>
                             <ion-icon name="camera"></ion-icon>
                         </button>

@@ -10,6 +10,7 @@ import {AmazonS3Service} from './services/amazon_s3';
 import {UsersService} from './services/users';
 import {User} from './models/user';
 import {PushNotifications} from './services/push_notifications';
+import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
 
 @App({
   templateUrl: 'build/app.html',
@@ -28,6 +29,7 @@ import {PushNotifications} from './services/push_notifications';
       }
     )
   ],
+  pipes: [S3SignedUrlPipe],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
 })
 class TangoApp {
@@ -64,11 +66,6 @@ class TangoApp {
       }
 
       PushNotifications.start();
-
-      AmazonS3Service.config({
-        accessKeyId: 'AWS_ACCESS_KEY',
-        secretAccessKey: 'AWS_SECRET_KEY'
-      });
 
       this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });

@@ -3,20 +3,20 @@ import {Camera} from 'ionic-native';
 import {User} from '../../models/user';
 import {ProfileEditPage} from '../profile_edit/profile_edit';
 import {AmazonS3Service} from '../../services/amazon_s3';
+import {S3SignedUrlPipe} from '../../pipes/s3-signed-url.pipe';
 
 @Page({
-  templateUrl: 'build/pages/profile/profile.html'
+  templateUrl: 'build/pages/profile/profile.html',
+  pipes: [S3SignedUrlPipe]
 })
 export class ProfilePage {
   user:User;
-  image_url:string;
 
-  constructor(private navController:NavController, private amazonS3Service:AmazonS3Service) {
+  constructor(private navController:NavController) {
     new Storage(LocalStorage)
       .get('user')
       .then(user => {
         this.user = Object.assign(new User(), JSON.parse(user));
-        this.image_url = amazonS3Service.getSignedImageUrl(this.user.profile_image_id);
       });
   }
 

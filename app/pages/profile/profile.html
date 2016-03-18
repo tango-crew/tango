@@ -12,7 +12,7 @@
             <ion-row>
                 <ion-col offset-33 width-33>
                     <ion-avatar>
-                        <img src="{{image_url || user.avatar()}}"/>
+                        <img src="{{(user.profile_image_id | s3SignedUrl) || user.avatar()}}"/>
                     </ion-avatar>
                 </ion-col>
             </ion-row>
