@@ -1,4 +1,4 @@
-import {Page, Storage, LocalStorage, NavController} from 'ionic-framework/ionic';
+import {Page, Storage, LocalStorage, NavController} from 'ionic-angular';
 import {Camera} from 'ionic-native';
 import {User} from '../../models/user';
 import {ProfileEditPage} from '../profile_edit/profile_edit';

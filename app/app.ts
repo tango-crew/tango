@@ -1,4 +1,4 @@
-import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-framework/ionic';
+import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
 import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {provide, Type} from 'angular2/core';
 import 'rxjs/Rx';

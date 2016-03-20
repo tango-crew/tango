@@ -1,4 +1,4 @@
-import {Page, NavController, Events} from 'ionic-framework/ionic';
+import {Page, NavController, Events} from 'ionic-angular';
 import {FacebookService} from '../../services/facebook';
 import {UsersService} from '../../services/users';
 import {SignUpPage} from '../signup/signup';

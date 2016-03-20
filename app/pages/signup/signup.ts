@@ -1,4 +1,4 @@
-import {Page, Events} from 'ionic-framework/ionic';
+import {Page, Events} from 'ionic-angular';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {UsersService} from '../../services/users'
 import {User} from '../../models/user'
