@@ -9,8 +9,6 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     files: [
-      'www/js/openfb.js',
-      'www/build/js/vendor.bundle.js',
       'www/build/js/app.bundle.js',
       'www/build/js/specs.bundle.js'
     ],
@@ -37,7 +35,7 @@ module.exports = function(config) {
     // TODO Elevate the level according to implement new features ;)
     thresholdReporter: {
       statements: 41,
-      branches: 26,
+      branches: 24,
       functions: 32,
       lines: 40
     }
