@@ -21,7 +21,11 @@ This is an awesome app to find and schedule hair cuts, make up, and something th
 4. Export the variables described [here](https://docs.google.com/document/d/12XfsJxoqpIvneiJz_i8dL86NOwYy8CISqMZnW6p3650)
 5. `chmod 700 bin/setup.sh`
 6. `./bin/setup.sh`
-7. `npm start`
+7. `npm test`
+
+If the tests passed, run:
+
+`npm start`
 
 ## Emulate
 
@@ -35,6 +39,14 @@ You can preview the app installing the [Ionic View](http://view.ionic.io/) on yo
  
 ```
 ionic upload
+```
+
+## Tests
+
+You can see the tests info with the command:
+
+```
+npm test
 ```
 
 ## References
