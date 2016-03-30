@@ -1,42 +1,43 @@
-<ion-navbar *navbar>
-    <button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
+<ion-navbar *navbar primary>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
 
-    <ion-title>Meu Perfil</ion-title>
+  <ion-title>Meu Perfil</ion-title>
 </ion-navbar>
 
 <ion-content class="profile">
-    <ion-card>
-        <ion-card-header>
-            <ion-row>
-                <ion-col offset-33 width-33>
-                    <ion-avatar>
-                        <img src="{{(user.profile_image_id | s3SignedUrl) || user.avatar()}}"/>
-                    </ion-avatar>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <div>
-                    <h1>{{user.name}}</h1>
-                </div>
-            </ion-row>
-            <ion-row>
-                <div>
-                    <p>{{user.bio}}</p>
-                </div>
-            </ion-row>
-        </ion-card-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-row>
+        <div class="flex-center">
+          <ion-col>
+            <ion-avatar>
+              <img src="{{(user.profile_image_id | s3SignedUrl) || user.avatar()}}"/>
+            </ion-avatar>
+          </ion-col>
+        </div>
+      </ion-row>
+      <ion-row>
+        <div>
+          <h1>{{user.name}}</h1>
+        </div>
+      </ion-row>
+    </ion-card-header>
 
-        <ion-card-content>
-            <ion-item>
-                <ion-icon name="mail"></ion-icon>
-                {{user.email}}
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
+    <ion-card-content>
+      <ion-item>
+        <p>{{user.bio}}</p>
+      </ion-item>
 
-    <button fab danger fab-bottom fab-right (click)="edit()">
-        <ion-icon name="create"></ion-icon>
-    </button>
+      <ion-item>
+        <ion-icon name="mail"></ion-icon>
+        {{user.email}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <button fab danger fab-bottom fab-right (click)="edit()">
+    <ion-icon name="create"></ion-icon>
+  </button>
 </ion-content>
