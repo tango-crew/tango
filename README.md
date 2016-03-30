@@ -1,6 +1,6 @@
 # Tango
 
-[![Build Status](https://travis-ci.org/tango-crew/tango.svg?branch=master)](https://travis-ci.org/tango-crew/tango)
+[![Build Status](https://travis-ci.org/tango-crew/tango.svg?branch=v0.0.1)](https://travis-ci.org/tango-crew/tango)
 [![Code Climate](https://codeclimate.com/github/tango-crew/tango/badges/gpa.svg)](https://codeclimate.com/github/tango-crew/tango)
 
 This is an awesome app to find and schedule hair cuts, make up, and something that you want.

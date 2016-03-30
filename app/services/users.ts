@@ -4,7 +4,7 @@ import {ResourceBaseService} from './resource_base';
 
 @Injectable()
 export class UsersService extends ResourceBaseService {
-  constructor(private http: Http) {
+  constructor(http: Http) {
     super(http, 'users');
   }
 

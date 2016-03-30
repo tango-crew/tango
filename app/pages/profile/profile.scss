@@ -12,12 +12,12 @@
       margin: auto;
     }
 
-    p {
-      color: #666;
-      font-style: italic;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+  }
+
+  p {
+    font-weight: bold;
+    white-space: initial;
+    text-align: justify;
   }
 
   ion-avatar {

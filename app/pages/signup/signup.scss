@@ -1,5 +1,10 @@
 .sign-up {
 
+  .error {
+    color: $danger;
+    margin-top: 1rem;
+  }
+
   input[type=submit] {
     margin-top: 32px;
   }
