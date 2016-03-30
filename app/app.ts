@@ -1,15 +1,20 @@
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
+import {StatusBar} from 'ionic-native'
 import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {provide, Type} from 'angular2/core';
 import 'rxjs/Rx';
 
 import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
+
 import {FacebookService} from './services/facebook';
 import {AmazonS3Service} from './services/amazon_s3';
 import {UsersService} from './services/users';
-import {User} from './models/user';
 import {PushNotifications} from './services/push_notifications';
+import {SpinnerHttpDecorator} from './services/spinner_http_decorator';
+
+import {User} from './models/user';
+
 import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
 
 @App({
@@ -18,51 +23,48 @@ import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
     FacebookService,
     UsersService,
     AmazonS3Service,
+    provide(Storage,
+      {useFactory: () => new Storage(LocalStorage)}
+    ),
     provide(Http,
       {
-        useFactory: (backend, defaultOptions) => {
+        useFactory: (backend, defaultOptions, events) => {
           defaultOptions.headers.append('X-Tango-Api-Token', 'TANGO_API_TOKEN');
           defaultOptions.headers.append('Content-Type', 'application/json');
-          return new Http(backend, defaultOptions);
+
+          return new SpinnerHttpDecorator(backend, defaultOptions, events);
         },
-        deps: [XHRBackend, RequestOptions]
+        deps: [XHRBackend, RequestOptions, Events]
       }
     )
   ],
   pipes: [S3SignedUrlPipe],
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
 })
-class TangoApp {
-  rootPage: Type;
-  storage: Storage;
-  pages: Array<{title: string, component: Type}>;
-  user: User;
+export class TangoApp {
+  rootPage:Type;
+  pages:Array<{title: string, component: Type}>;
+  user:User;
+  spinnerVisible:boolean = false;
 
-  constructor(
-    private app: IonicApp,
-    private platform: Platform,
-    private events: Events,
-    private facebookService: FacebookService) {
+  constructor(private app:IonicApp,
+              private platform:Platform,
+              private events:Events,
+              private storage:Storage,
+              private facebookService:FacebookService) {
     this.initialize();
   }
 
-  handleUserAuthenticated(user) {
-    this.setUser(user);
-    this.storage.set('user', JSON.stringify(user));
-    this.pages = this.menuPages();
-    this.openPage(this.menuPages()[0]);
-  }
-
-  menuPages() {
+  private menuPages() {
     return [
       {title: 'Perfil', component: ProfilePage}
     ]
   }
 
-  initialize() {
+  private initialize() {
     this.platform.ready().then(() => {
       if (typeof StatusBar !== 'undefined') {
-        StatusBar.styleDefault();
+        StatusBar.backgroundColorByHexString('#5CACF4');
       }
 
       PushNotifications.start();
@@ -70,32 +72,41 @@ class TangoApp {
       this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
 
-    this.storage = new Storage(LocalStorage);
-    this.events.subscribe('user:authenticated', (args) => this.handleUserAuthenticated(args[0]));
+    this.events.subscribe('user:authenticated', (args) => this.userAuthenticated(args[0]));
+    this.events.subscribe('spinner', (args) => this.spinnerVisible = args[0]);
     this.verifyIfUserIsAuthenticated();
   }
 
-  verifyIfUserIsAuthenticated() {
-    this.storage.get('user')
-      .then((user) => {
-        if (user) {
-          this.setUser(user);
-          this.pages = this.menuPages();
-          this.rootPage = this.menuPages()[0].component;
-        } else {
-          this.rootPage = AuthenticationPage;
-        }
-      });
+  private userAuthenticated(user) {
+    this.storage.set('user', JSON.stringify(user));
+    this.signIn(user);
+    this.openPage(this.menuPages()[0]);
   }
 
-  setUser(user: User) {
-    this.user = user;
+  private verifyIfUserIsAuthenticated() {
+    this.storage.get('user')
+      .then(
+        (user) => {
+          if (user) {
+            this.signIn(JSON.parse(user));
+          } else {
+            this.rootPage = AuthenticationPage;
+          }
+        },
+        err => console.log('error to retrieve the user', err)
+      );
+  }
+
+  signIn(user) {
+    this.user = Object.assign(new User(), user);
+    this.pages = this.menuPages();
+    this.rootPage = this.pages[0].component;
   }
 
   logout() {
     this.openPage({component: AuthenticationPage});
     this.storage.remove('user');
-    // TODO I dunno why if I set it to null in the exact moment the view stays blocked
+    // It is necessary to wait the menu's transition
     setTimeout(() => this.user = null, 1000);
   }
 

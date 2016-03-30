@@ -7,6 +7,7 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
+@import "../app";
 @import "../pages/authentication/authentication";
 @import "../pages/profile/profile";
 @import "../pages/profile_edit/profile_edit";
@@ -24,4 +25,20 @@
 
 input[type=submit] {
   @extend button
+}
+
+ion-spinner {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.6;
+
+  svg {
+    width: 20%;
+    margin-left: 40%;
+
+    circle, line {
+      stroke: darken($primary, 30%) !important;
+    }
+  }
 }

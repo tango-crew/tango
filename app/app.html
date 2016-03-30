@@ -1,19 +1,28 @@
 <ion-menu [content]="content" *ngIf="user">
 
-    <ion-toolbar>
-        <ion-title>{{user.name}}</ion-title>
-    </ion-toolbar>
+  <ion-toolbar primary-l-10>
+    <ion-title>
+      <ion-avatar>
+        <img src="{{(user.profile_image_id | s3SignedUrl) || user.avatar()}}"/>
+      </ion-avatar>
+      <h3>{{user.name}}</h3>
+      <h6>{{user.email}}</h6>
+    </ion-title>
+  </ion-toolbar>
 
-    <ion-content>
-        <ion-list>
-            <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
-                <ion-icon name="person"></ion-icon> {{p.title}}
-            </button>
-            <button menuClose dark clear (click)="logout()">
-                <ion-icon name="log-out"></ion-icon> Sair
-            </button>
-        </ion-list>
-    </ion-content>
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
+        <ion-icon name="person"></ion-icon>
+        {{p.title}}
+      </button>
+      <button menuClose dark clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+        Sair
+      </button>
+    </ion-list>
+  </ion-content>
 </ion-menu>
 
 <ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-spinner *ngIf="spinnerVisible"></ion-spinner>
