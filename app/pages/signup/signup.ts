@@ -9,6 +9,7 @@ import {User} from '../../models/user'
 export class SignUpPage {
   user: User;
   passwords_are_equal: boolean;
+  error:any;
 
   constructor(private events:Events, private users:UsersService) {
     this.user = new User();
@@ -16,13 +17,14 @@ export class SignUpPage {
   }
 
   signUp() {
+    this.error = null;
     this.users
       .create(
         {"user": this.user}
       )
       .subscribe(
-        (user) => this.notifyWith(user),
-        (error) => alert(`erro ao criar o usuário: ${JSON.stringify(error)}`)
+        user => this.notifyWith(user),
+        error => this.error = error
       );
   }
 
