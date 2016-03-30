@@ -1,4 +1,4 @@
-import {Page, Events, NavParams} from 'ionic-angular';
+import {Platform, Page, Events, NavParams, NavController, ActionSheet} from 'ionic-angular';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {AmazonS3Service} from '../../services/amazon_s3';
 import {UsersService} from '../../services/users';
@@ -14,7 +14,12 @@ export class ProfileEditPage {
   image_url:string;
   user:User;
 
-  constructor(private events:Events, private amazonS3Service:AmazonS3Service, private usersService:UsersService, navParams:NavParams) {
+  constructor(private events:Events,
+              private amazonS3Service:AmazonS3Service,
+              private usersService:UsersService,
+              private navController:NavController,
+              private platform:Platform,
+              navParams:NavParams) {
     this.user = navParams.get('user');
   }
 
@@ -35,6 +40,7 @@ export class ProfileEditPage {
   }
 
   private uploadImageAndSave() {
+    this.events.publish('spinner', true);
     this.amazonS3Service.upload(this.image_url)
       .then(
         (res:{ETag: string, Location: string, key: string}) => {
@@ -54,12 +60,54 @@ export class ProfileEditPage {
     this.events.publish('user:authenticated', user);
   }
 
-  choosePhoto() {
-    Camera.getPicture()
+  private choosePhotoBy(sourceType) {
+    Camera.getPicture({
+        quality: 100,
+        sourceType: sourceType
+    })
       .then(
-        imageData => this.image_url = imageData,
-        err => alert(err)
+        imageURI => {
+          plugins.crop.promise(imageURI, {quality: 100})
+            .then(
+              newPath => {
+                this.image_url = newPath;
+                if (sourceType === 1) Camera.cleanup();
+              },
+              err =>  {
+                this.image_url = imageURI;
+                console.error(err);
+                if (sourceType === 1) Camera.cleanup();
+              }
+            );
+        },
+        err => console.error(err)
       );
+  }
+
+  openMenu() {
+    this.navController.present(ActionSheet.create({
+      title: 'Escolha a Foto',
+      buttons: [
+        {
+          text: 'Camera',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'camera' : null,
+          handler: () => this.choosePhotoBy(1)
+        },
+        {
+          text: 'Album',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'images' : null,
+          handler: () => this.choosePhotoBy(2)
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          icon: !this.platform.is('ios') ? 'close' : null,
+          handler: () => console.log('Cancel clicked')
+        }
+      ]
+    }));
   }
 
   save() {

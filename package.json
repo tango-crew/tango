@@ -19,7 +19,6 @@
     "karma-jasmine": "^0.3.8",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-threshold-reporter": "^0.1.15",
-    "karma-webpack": "^1.7.0",
     "strip-sourcemap-loader": "0.0.1",
     "typescript": "1.8.7"
   },
@@ -44,7 +43,8 @@
     "cordova-plugin-camera",
     "ionic-plugin-keyboard",
     "onesignal-cordova-plugin",
-    "cordova-plugin-file"
+    "cordova-plugin-file",
+    "cordova-plugin-crop"
   ],
   "cordovaPlatforms": [
     "ios",
