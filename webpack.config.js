@@ -11,7 +11,8 @@ module.exports = {
       path.resolve('app/app')
     ],
     specs: [
-      path.join(specsPath, 'models/user.spec.ts')
+      path.join(specsPath, 'models/user.spec.ts'),
+      path.join(specsPath, 'app.spec.ts')
     ]
   },
   output: {
