@@ -28,13 +28,10 @@ import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
     ),
     provide(Http,
       {
-        useFactory: (backend, defaultOptions, events) => {
-          defaultOptions.headers.append('X-Tango-Api-Token', 'TANGO_API_TOKEN');
-          defaultOptions.headers.append('Content-Type', 'application/json');
-
-          return new SpinnerHttpDecorator(backend, defaultOptions, events);
+        useFactory: (backend, defaultOptions, events, storage) => {
+          return new SpinnerHttpDecorator(backend, defaultOptions, events, storage);
         },
-        deps: [XHRBackend, RequestOptions, Events]
+        deps: [XHRBackend, RequestOptions, Events, Storage]
       }
     )
   ],
@@ -106,6 +103,7 @@ export class TangoApp {
   logout() {
     this.openPage({component: AuthenticationPage});
     this.storage.remove('user');
+    this.events.publish('user:unauthenticated', null);
     // It is necessary to wait the menu's transition
     setTimeout(() => this.user = null, 1000);
   }

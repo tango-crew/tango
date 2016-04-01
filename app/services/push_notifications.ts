@@ -1,3 +1,5 @@
+// import {Settings} from '../settings'
+
 export class PushNotifications {
   constructor() {
   }
@@ -8,8 +10,8 @@ export class PushNotifications {
       let notificationOpenedCallback = jsonData => console.log(`didReceiveRemoteNotificationCallBack: ${JSON.stringify(jsonData)}`);
 
       window.plugins.OneSignal.init(
-        "ONE_SIGNAL_TOKEN",
-        {googleProjectNumber: "GOOGLE_PROJECT_NUMBER"},
+        Settings.oneSignalKey,
+        {googleProjectNumber: Settings.googleProjectNumber},
         notificationOpenedCallback
       );
 

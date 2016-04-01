@@ -2,6 +2,7 @@ export class User {
   id:number;
   name:string;
   email:string;
+  token:string;
   integration_id:string;
   integration_type:number;
   bio:string;
