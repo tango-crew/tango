@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "awesome-typescript-loader": "0.15.10",
+    "cz-conventional-changelog": "^1.1.5",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-watch": "4.3.5",
@@ -56,5 +57,10 @@
   "scripts": {
     "start": "ionic serve --lab",
     "test": "gulp build && ./node_modules/karma/bin/karma start --single-run"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
