@@ -1,9 +1,10 @@
 import {Http} from 'angular2/http';
+// import {Settings} from '../settings'
 
 export class ResourceBaseService {
-  protected endpoint:string = 'http://tango-api.herokuapp.com';
+  protected endpoint:string = Settings.apiEndpoint;
 
-  constructor(private http:Http, protected resource:string) {
+  constructor(protected http:Http, protected resource:string) {
   }
 
   all() {

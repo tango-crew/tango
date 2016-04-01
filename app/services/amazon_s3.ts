@@ -1,13 +1,14 @@
 import {Injectable} from 'angular2/core';
+// import {Settings} from '../settings'
 
 @Injectable()
 export class AmazonS3Service {
   constructor() {
     AWS.config.update({
-      accessKeyId: 'AWS_ACCESS_KEY',
-      secretAccessKey: 'AWS_SECRET_KEY'
+      accessKeyId: Settings.awsAccessKeyId,
+      secretAccessKey: Settings.awsSecretAccessKey
     });
-    AWS.config.region = 'sa-east-1';
+    AWS.config.region = Settings.awsRegion;
   }
 
   private cacheBucket() {

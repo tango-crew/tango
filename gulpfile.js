@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gulpWatch = require('gulp-watch'),
     del = require('del'),
+    nconf = require('nconf'),
     argv = process.argv;
 
 /**
@@ -12,12 +13,12 @@ var buildSass = require('ionic-gulp-sass-build');
 var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 
-gulp.task('watch', ['sass', 'html', 'fonts'], function(){
+gulp.task('watch', ['sass', 'html', 'fonts', 'generate.settings'], function(){
   gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
   gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
   return buildWebpack({ watch: true });
 });
-gulp.task('build', ['sass', 'html', 'fonts'], buildWebpack);
+gulp.task('build', ['sass', 'html', 'fonts', 'generate.settings'], buildWebpack);
 gulp.task('sass', buildSass);
 gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
@@ -37,3 +38,36 @@ gulp.task('deploy:before', ['build']);
 // we want to 'watch' when livereloading
 var shouldWatch = argv.indexOf('-l') > -1 || argv.indexOf('--livereload') > -1;
 gulp.task('run:before', [shouldWatch ? 'watch' : 'build']);
+
+/**
+ * Task generates a js that abstract the environments settings
+ */
+gulp.task('generate.settings', function (done) {
+  nconf.argv()
+    .env()
+    .file({
+      file: 'www/build/js/settings.js',
+      format: {
+        stringify: function (obj, replacer, spacing) {
+          return 'window.Settings = ' + JSON.stringify(obj, replacer || null, spacing || 2);
+        },
+        parse: function(value) {
+          return JSON.parse(value.replace('window.Settings = ', ''));
+        }
+      }
+    });
+
+  nconf.set('apiEndpoint', nconf.get('TANGO_API_ENDPOINT'));
+  nconf.set('apiToken', nconf.get('TANGO_API_TOKEN'));
+  nconf.set('awsAccessKeyId', nconf.get('AWS_ACCESS_KEY'));
+  nconf.set('awsSecretAccessKey', nconf.get('AWS_SECRET_KEY'));
+  nconf.set('awsRegion', nconf.get('AWS_REGION'));
+  nconf.set('oneSignalKey', nconf.get('ONE_SIGNAL_KEY'));
+  nconf.set('googleProjectNumber', nconf.get('GOOGLE_PROJECT_NUMBER'));
+  nconf.set('facebookAppId', nconf.get('FACEBOOK_APP_ID'));
+
+  nconf.save(function (err) {
+    done();
+  });
+});
+
