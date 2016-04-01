@@ -13,12 +13,16 @@ var buildSass = require('ionic-gulp-sass-build');
 var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 
-gulp.task('watch', ['sass', 'html', 'fonts', 'generate.settings'], function(){
+gulp.task('watch', ['sass', 'html', 'fonts'], function(){
   gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
   gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
-  return buildWebpack({ watch: true });
+  return buildWebpack({ watch: true })
+    .then(generateSettings);
 });
-gulp.task('build', ['sass', 'html', 'fonts', 'generate.settings'], buildWebpack);
+gulp.task('build', ['sass', 'html', 'fonts'], function() {
+  return buildWebpack()
+    .then(generateSettings);
+});
 gulp.task('sass', buildSass);
 gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
@@ -42,7 +46,7 @@ gulp.task('run:before', [shouldWatch ? 'watch' : 'build']);
 /**
  * Task generates a js that abstract the environments settings
  */
-gulp.task('generate.settings', function (done) {
+function generateSettings () {
   nconf.argv()
     .env()
     .file({
@@ -67,7 +71,7 @@ gulp.task('generate.settings', function (done) {
   nconf.set('facebookAppId', nconf.get('FACEBOOK_APP_ID'));
 
   nconf.save(function (err) {
-    done();
+    if (err) console.log(err);
   });
-});
+}
 
