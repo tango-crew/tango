@@ -9,6 +9,7 @@ www/build/
 platforms/
 plugins/
 coverage/
+typings/
 
 .DS_Store
 Thumbs.db

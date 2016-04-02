@@ -3,7 +3,7 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {AmazonS3Service} from '../../services/amazon_s3';
 import {UsersService} from '../../services/users';
 import {User} from '../../models/user'
-import {Camera} from "ionic-native/dist/index";
+import {Camera} from "ionic-native";
 import {S3SignedUrlPipe} from '../../pipes/s3-signed-url.pipe';
 
 @Page({

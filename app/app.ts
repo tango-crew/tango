@@ -1,5 +1,5 @@
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
-import {StatusBar} from 'ionic-native'
+import {StatusBar} from 'ionic-native';
 import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
 import {provide, Type} from 'angular2/core';
 import 'rxjs/Rx';

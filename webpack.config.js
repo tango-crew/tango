@@ -1,23 +1,15 @@
 var path = require('path');
-var specsPath = path.resolve(__dirname, 'specs');
-
 
 module.exports = {
-  entry: {
-    app: [
-      path.normalize('es6-shim/es6-shim.min'),
-      'reflect-metadata',
-      path.normalize('zone.js/dist/zone-microtask'),
-      path.resolve('app/app')
-    ],
-    specs: [
-      path.join(specsPath, 'models/user.spec.ts'),
-      path.join(specsPath, 'app.spec.ts')
-    ]
-  },
+  entry: [
+    path.normalize('es6-shim/es6-shim.min'),
+    'reflect-metadata',
+    path.normalize('zone.js/dist/zone-microtask'),
+    path.resolve('app/app')
+  ],
   output: {
     path: path.resolve('www/build/js'),
-    filename: "[name].bundle.js",
+    filename: "app.bundle.js",
     pathinfo: false // show module paths in the bundle, handy for debugging
   },
   module: {
@@ -30,7 +22,7 @@ module.exports = {
           resolveGlobs: false,
           externals: ['typings/browser.d.ts']
         },
-        include: [path.resolve('app'), specsPath],
+        include: path.resolve('app'),
         exclude: /node_modules/
       },
       {
