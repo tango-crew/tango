@@ -32,4 +32,4 @@ do
 done
 
 echo '>>> Install Facebook plugin <<<'
-cordova -d plugin add https://github.com/Wizcorp/phonegap-facebook-plugin/ --variable APP_ID=$FACEBOOK_APP_ID --variable APP_NAME=$FACEBOOK_APP_NAME
+cordova plugin add cordova-plugin-facebook4 --variable APP_ID=$FACEBOOK_APP_ID --variable APP_NAME=$FACEBOOK_APP_NAME

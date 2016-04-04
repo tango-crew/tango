@@ -1,5 +1,5 @@
 import {Page, NavController, Events} from 'ionic-angular';
-import {FacebookService} from '../../services/facebook';
+import {Facebook} from 'ionic-native';
 import {UsersService} from '../../services/users';
 import {SignUpPage} from '../signup/signup';
 import {User} from '../../models/user';
@@ -12,7 +12,6 @@ export class AuthenticationPage {
   signInInvalid:boolean = false;
 
   constructor(private events:Events,
-              private facebookService:FacebookService,
               private users:UsersService,
               private nav:NavController) {
     this.user = new User();
@@ -39,17 +38,18 @@ export class AuthenticationPage {
   }
 
   login() {
-    this.facebookService
-      .login()
+    Facebook.login(["email", 'public_profile'])
       .then(
-        () => this.getFacebookUser(),
-        (error) => alert(`Erro ao autenticar usuário com o Facebook: ${JSON.stringify(error)}`)
+        (res) => this.getFacebookUser(),
+        (error) =>  {
+          alert('Não foi possível autenticá-lo pelo Facebook, por favor, tente o cadastro padrão!');
+          console.error(`Facebook authentication error: ${JSON.stringify(error)}`)
+        }
       );
   }
 
   getFacebookUser() {
-    this.facebookService
-      .user()
+    Facebook.api('me/?fields=id,name,email', ['email', 'public_profile'])
       .then(
         (user) => this.verifyIfUserExistsOnApi(user),
         (error) => alert(`Erro ao obter usuário do Facebook: ${JSON.stringify(error)}`)

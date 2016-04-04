@@ -2,9 +2,7 @@ import {TEST_BROWSER_PLATFORM_PROVIDERS, TEST_BROWSER_APPLICATION_PROVIDERS} fro
 import {it, describe, expect, beforeEach, setBaseTestProviders} from 'angular2/testing';
 import {IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
 import {TangoApp } from './app';
-// import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
-import {FacebookService} from './services/facebook';
 import {User} from './models/user';
 
 // this needs doing _once_ for the entire test suite, hence it's here
@@ -20,7 +18,6 @@ export function main(): void {
     let nav:any = null;
     let storage:Storage = null;
     let platform:Platform = null;
-    let facebookService:FacebookService = new FacebookService();
 
     beforeEach(() => {
       ionicApp = new IonicApp(null, null, null);
@@ -38,7 +35,7 @@ export function main(): void {
     });
 
     it('initialises with an app', () => {
-      tangoApp = new TangoApp(ionicApp, platform, events, storage, facebookService);
+      tangoApp = new TangoApp(ionicApp, platform, events, storage);
 
       expect(tangoApp['app']).toEqual(ionicApp);
     });
@@ -47,7 +44,7 @@ export function main(): void {
       beforeEach(() => {
         storage.set('user', null);
 
-        tangoApp = new TangoApp(ionicApp, platform, events, storage, facebookService);
+        tangoApp = new TangoApp(ionicApp, platform, events, storage);
       });
 
       it('initialises without pages', () => {
@@ -68,7 +65,7 @@ export function main(): void {
 
         //storage.set('user', user);
 
-        tangoApp = new TangoApp(ionicApp, platform, events, storage, facebookService);
+        tangoApp = new TangoApp(ionicApp, platform, events, storage);
 
         events.publish('user:authenticated', user);
       });
