@@ -29,7 +29,9 @@ export class SpinnerHttpDecorator {
   private decorate(fn) {
     this.events.publish('spinner', true);
     return fn()
-      .do(() => this.events.publish('spinner', false))
+      .do(() => {
+        this.events.publish('spinner', false);
+      })
       .catch((error:any) => {
         this.events.publish('spinner', false);
         return Observable.throw(error.json() || 'Server error');

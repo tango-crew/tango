@@ -6,8 +6,6 @@ import 'rxjs/Rx';
 
 import {AuthenticationPage} from './pages/authentication/authentication';
 import {ProfilePage} from './pages/profile/profile';
-
-import {FacebookService} from './services/facebook';
 import {AmazonS3Service} from './services/amazon_s3';
 import {UsersService} from './services/users';
 import {PushNotifications} from './services/push_notifications';
@@ -20,7 +18,6 @@ import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
 @App({
   templateUrl: 'build/app.html',
   providers: [
-    FacebookService,
     UsersService,
     AmazonS3Service,
     provide(Storage,
@@ -47,8 +44,7 @@ export class TangoApp {
   constructor(private app:IonicApp,
               private platform:Platform,
               private events:Events,
-              private storage:Storage,
-              private facebookService:FacebookService) {
+              private storage:Storage) {
     this.initialize();
   }
 
@@ -65,8 +61,6 @@ export class TangoApp {
       }
 
       PushNotifications.start();
-
-      this.facebookService.init({appId: '879700552144985', version: 'v2.5'});
     });
 
     this.events.subscribe('user:authenticated', (args) => this.userAuthenticated(args[0]));

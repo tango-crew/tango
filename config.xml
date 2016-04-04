@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.tango" version="0.0.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tango" version="0.0.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Tango</name>
   <description>Tango is an awesome app to find and schedule hair cuts, make up, and something that you want.</description>
   <author email="diego.domingues16@gmail.com, rogerio.alcantara@gmail.com, saulocamposi@gmail.com" href="http://tango.com/">Tango Team</author>
