@@ -1,8 +1,10 @@
 #! /usr/bin/env sh
-#
-# Helper script run from travis to deploy the app
-#
-# deploy to davonez in addition to ionic view for debug
+
+echo '>>> Sending to Ionic view <<<'
 ionic upload --email $IONIC_EMAIL --password $IONIC_PASSWORD
-#ssh-keyscan 176.58.107.25  >> ~/.ssh/known_hosts
-#scp -i .travis/travis_rsa.pem platforms/android/build/outputs/apk/android-debug.apk shazleto@176.58.107.25:~/clicker
+
+echo '>>> Sending to Testfairy <<<'
+curl https://app.testfairy.com/api/upload
+    -F api_key=$TESTFAIRY_API_KEY
+    -F file=platforms/android/build/outputs/apk/android-debug.apk
+    -F testers_groups='devs'
