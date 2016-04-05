@@ -11,7 +11,7 @@ npm install -g ionic@beta
 echo '>>> Installing dependencies <<<'
 npm install
 
-echo '>>> Restoring the Ionic state<<<'
+echo '>>> Restoring the Ionic state <<<'
 ionic state restore
 
 echo '>>> Creating signatures to Android <<<'

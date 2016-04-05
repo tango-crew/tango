@@ -17,7 +17,7 @@ if (rootdir) {
       var platform = platforms[x].trim().toLowerCase();
       var testBuildPath;
 
-      if(platform == 'android') {
+      if(platform === 'android') {
         testBuildPath = path.join('platforms', platform, 'assets', 'www', 'build', 'test');
       } else {
         testBuildPath = path.join('platforms', platform, 'www', 'build', 'test');
