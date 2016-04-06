@@ -1,6 +1,6 @@
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {Http, XHRBackend, RequestOptions, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, XHRBackend, RequestOptions} from 'angular2/http';
 import {provide, Type} from 'angular2/core';
 import 'rxjs/Rx';
 
@@ -33,7 +33,7 @@ import {S3SignedUrlPipe} from './pipes/s3-signed-url.pipe';
     )
   ],
   pipes: [S3SignedUrlPipe],
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
+  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class TangoApp {
   rootPage:Type;
@@ -51,7 +51,7 @@ export class TangoApp {
   private menuPages() {
     return [
       {title: 'Perfil', component: ProfilePage}
-    ]
+    ];
   }
 
   private initialize() {
@@ -63,8 +63,14 @@ export class TangoApp {
       PushNotifications.start();
     });
 
-    this.events.subscribe('user:authenticated', (args) => this.userAuthenticated(args[0]));
-    this.events.subscribe('spinner', (args) => this.spinnerVisible = args[0]);
+    this.events.subscribe('user:authenticated', (args) => {
+      this.userAuthenticated(args[0])
+    });
+
+    this.events.subscribe('spinner', (args) => {
+      this.spinnerVisible = args[0];
+    });
+
     this.verifyIfUserIsAuthenticated();
   }
 
@@ -94,7 +100,7 @@ export class TangoApp {
     this.rootPage = this.pages[0].component;
   }
 
-  logout() {
+  signOut() {
     this.openPage({component: AuthenticationPage});
     this.storage.remove('user');
     this.events.publish('user:unauthenticated', null);

@@ -3,11 +3,7 @@ describe('TangoApp', () => {
     browser.get('');
   });
 
-  it('should have a title', () => {
-    expect(browser.getTitle()).toEqual('Seja bem vindo!');
-  });
-
-  it('should have <nav>', () => {
-    expect(element(by.css('ion-navbar')).isPresent()).toEqual(true);
+  it('should have correct nav text for Authentication Page', () => {
+    expect(element(by.css('ion-navbar ion-title')).getText()).toEqual('Seja bem vindo!');
   });
 });
