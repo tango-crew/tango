@@ -25,6 +25,6 @@ describe('Authentication Page', () => {
   it('should sign out the user', () => {
     page.signOut();
 
-    expect(element(by.css('ion-navbar ion-title')).getText()).toEqual('Seja bem vindo!');
+    expect(page.currentTitle()).toEqual('Seja bem vindo!');
   });
 });
