@@ -1,9 +1,9 @@
 Feature: Users
-As a user
-I want to create an account on Tango
-In order to find awesome professionals
+  As a user
+  I want to create an account on Tango
+  In order to find awesome professionals
 
-Scenario: Creating a new account
+  Scenario: Creating a new account
     Given I am not authenticated
     When I go to register
     And I fill the form with some valid data
