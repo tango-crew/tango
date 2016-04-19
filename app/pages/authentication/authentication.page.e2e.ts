@@ -5,6 +5,7 @@ export class AuthenticatePage extends BasePage {
   emailField:ElementFinder = element(by.css('#user-email input'));
   passwordField:ElementFinder = element(by.css('#user-password input'));
   signInButton:ElementFinder = element(by.css('#sign-in-form button'));
+  signUpButton:ElementFinder = element(by.css('#sign-in-form button'));
 
   constructor() {
     super();

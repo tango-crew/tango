@@ -3,19 +3,25 @@
     "target": "es5",
     "module": "commonjs",
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "sourceMap": true
   },
-  "filesGlob": [
-    "**/*.ts",
-    "!node_modules/**/*"
-  ],
   "exclude": [
     "node_modules",
     "typings/main",
     "typings/main.d.ts"
   ],
+  "filesGlob": [
+    "**/*.ts",
+    "./test/**/*.ts",
+    "!node_modules/**/*",
+    "typings/browser.d.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
+    "forkChecker": true
+  },
   "compileOnSave": false,
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
 }
