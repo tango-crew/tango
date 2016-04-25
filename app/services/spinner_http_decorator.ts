@@ -2,7 +2,7 @@ import {Http, RequestOptions, ConnectionBackend, RequestOptionsArgs, Request, Re
 import {Events, Storage} from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
-// import {Settings} from '../settings'
+// import {Settings} from '../settings';
 
 export class SpinnerHttpDecorator {
   private http:Http;
