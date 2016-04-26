@@ -7,6 +7,7 @@ import * as karma        from 'karma';
 import * as loadPlugins  from 'gulp-load-plugins';
 import * as runSequence  from 'run-sequence';
 import * as util         from 'gulp-util';
+import * as cucumber     from 'cucumber';
 
 let plugins: any = loadPlugins();
 
@@ -20,14 +21,13 @@ util.log(ionicGulpfile.logline);
 // compile typescript into individual files, project directoy structure is replicated under www/build/test
 function buildTypescript(): any {
   'use strict';
-
   let tsProject: any = plugins.typescript.createProject('tsconfig.json', {
     typescript: require('typescript'),
   });
   let src: Array<any> = [
     join(TYPINGS_DIR, '/browser.d.ts'),
     join(APP_DIR, '**/*.ts'),
-    join(TEST_DIR, '**/*.ts'),
+    join(TEST_DIR, '**/*.ts')
   ];
   let result: any = gulp.src(src)
     .pipe(plugins.inlineNg2Template({ base: 'www', useRelativePaths: false }))
@@ -40,13 +40,12 @@ function buildTypescript(): any {
 // compile E2E typescript into individual files, project directoy structure is replicated under www/build/test
 function buildE2E(): any {
   'use strict';
-
   let tsProject: any = plugins.typescript.createProject('tsconfig.json', {
     typescript: require('typescript'),
   });
   let src: Array<any> = [
     join(TYPINGS_DIR, '/browser.d.ts'),
-    join(APP_DIR, '**/*e2e.ts'),
+    join(TEST_DIR, '**/*.ts'),
   ];
   let result: any = gulp.src(src)
     .pipe(plugins.typescript(tsProject));
@@ -58,7 +57,6 @@ function buildE2E(): any {
 // delete everything used in our test cycle here
 function clean(): any {
   'use strict';
-
   // You can use multiple globbing patterns as you would with `gulp.src`
   return del([TEST_DEST]).then((paths: Array<any>) => {
     util.log('Deleted', chalk.yellow(paths && paths.join(', ') || '-'));
@@ -68,7 +66,6 @@ function clean(): any {
 // run tslint against all typescript
 function lint(): any {
   'use strict';
-
   return gulp.src(join(APP_DIR, '**/*.ts'))
     .pipe(plugins.tslint())
     .pipe(plugins.tslint.report(plugins.tslintStylish, {
@@ -81,7 +78,6 @@ function lint(): any {
 // run jasmine unit tests using karma with Chrome, Karma will be left open in Chrome for debug
 function debugKarma(done: Function): any {
   'use strict';
-
   new (<any>karma).Server({
     configFile: join(process.cwd(), TEST_DIR, 'karma.config.js'),
     singleRun: false,
@@ -92,7 +88,6 @@ function debugKarma(done: Function): any {
 // run jasmine unit tests using karma with PhantomJS2 in single run mode
 function startKarma(done: Function): any {
   'use strict';
-
   new (<any>karma).Server({
     configFile: join(process.cwd(), TEST_DIR, 'karma.config.js'),
     singleRun: true,
@@ -101,8 +96,7 @@ function startKarma(done: Function): any {
 
 function watchTest(): any {
   'use strict';
-
-  plugins.watch(join(APP_DIR, '**/*.ts'), () => {
+  plugins.watch(join(TEST_DIR, '**/*.ts'), () => {
     gulp.start('test.watch.build');
   });
 }

@@ -1,4 +1,5 @@
 // @AngularClass
+require('cucumber');
 require('ts-node/register');
 var helpers = require('./helpers');
 
@@ -26,10 +27,11 @@ exports.config = {
     helpers.root('test/features/**/*.feature')
   ],
   cucumberOpts: {
+    format: 'pretty',
+    compiler: 'ts:ts-node/register',
     require: [
       'test/features/step_definitions/**/*.steps.ts'
-    ],
-    format: 'pretty'
+    ]
   },
 
   directConnect: true,

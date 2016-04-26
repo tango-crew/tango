@@ -5,6 +5,7 @@
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160317120654",
     "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
     "chalk": "registry:dt/chalk#0.4.0+20160317120654",
+    "cucumber": "registry:dt/cucumber#0.0.0+20160316171810",
     "del": "registry:dt/del#2.2.0+20160317120654",
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
     "express": "registry:dt/express#4.0.0+20160317120654",
