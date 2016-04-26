@@ -38,7 +38,10 @@ module.exports = function () {
     expect(page.formIsValid()).to.become(isValid).and.notify(callback);
   });
 
-  this.Then(/^I should see 'Meu Perfil'$/, (valid:string, callback:Callback) => {
-    expect(page.currentTitle()).to.eventually.become('Meu Perfil').and.notify(callback);
+  this.Then(/^I should see 'Meu Perfil'$/, (callback:Callback) => {
+    page.wait()
+      .then(() => {
+        expect(page.currentTitle()).to.eventually.equal('Meu Perfil').and.notify(callback);
+      });
   });
 };

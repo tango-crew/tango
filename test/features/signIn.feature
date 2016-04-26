@@ -13,5 +13,5 @@ Feature: Sign In
     And I should see 'Meu Perfil'
 
     Examples:
-      | email                       | password             | valid |
-      | rogerio.alcantara@gmail.com | thisisavalidpassword |  true |
+      | email                       | password  | valid |
+      | rogerio.alcantara@gmail.com | qazwsx    |  true |
