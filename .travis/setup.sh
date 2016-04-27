@@ -2,15 +2,6 @@
 
 set -e
 
-echo '>>> Install Cordova <<<'
-sudo npm install -g cordova
-
-echo '>>> Install Ionic 2 <<<'
-sudo npm install -g ionic@beta
-
-echo '>>> Installing dependencies <<<'
-npm install
-
 echo '>>> Restoring the Ionic state<<<'
 ionic state restore
 

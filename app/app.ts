@@ -1,3 +1,4 @@
+import 'es6-shim';
 import {App, IonicApp, Platform, Events, Storage, LocalStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {Http, XHRBackend, RequestOptions} from 'angular2/http';

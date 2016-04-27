@@ -1,39 +1,29 @@
-language: android
+sudo: required
+dist: trusty
 
-android:
-  components:
-    - platform-tools
-    - tools
-    - android-23
-    - build-tools-23.0.2
-    - extra-android-m2repository
-
-jdk:
- - oraclejdk8
-
-cache:
-  directories:
-    - node_modules
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
-env:
-  - CXX=g++-4.8
-
-notifications:
-  email:
-  - diego.domingues16@gmail.com, rogerio.alcantara@gmail.com, saulocamposi@gmail.com
-  slack:
-    secure: puI9oyrhrul5lEVx6i0+A6I9puRizGfnY7CN3/3z8e6BV9bpmngeLqtCqf/xNY242Twjrf43qU86BRxDNYzASldmjyRLKQLW4iZth64rO5B3gE+HWLFdLeyEYtl10WmQMJUjd+gJC0oL2FcOhlEmB0mzBv+wOP2ez32Tr1Sv1GgIkYhkDyZVGajTa2XuLeAiCeGQL0cpjXBWk1rQmZUD/z5Tf3HjuPi09RoxpolkMxTH88dXU/mQ/3zMZoOnC/osAACF6jyjh5/XXq/ATZewu1cseLimD5YHqsKG8I8AV26u1kFdbPG8Y54poCC8OXihAe6FhuYwPD7kwNRnecd6CCP79z+orenuHTupeKKpq9k3B/QIarXlYjE0oinQQGPi4BDnNKbmLOWnF6nzkxLOiGhur13E2UaJZppG/ekD4EMvEU/rT5lpPoUqEMectaFQRBguiLFmJRUK6ZF9F8LNBtvjwFXfpRQU/60Sq61UeccqSDwsK8PfJjMbRG8smSlmLIxGiqPu4UMzLCX6npfYfsVl7K/wkLoXZLbIe+eGFR4/4Rb22PIGM6YFR43vPjDwfkeFKluVMzqtvci9TrDp/Y3UriqcP5H5M/blNG24IhbAA4rUJT7VdeOELdzkXtoRenBeOdtWz79j2hf26gOF+ETjLGXHQt5jfbDhXjMtWB8=
+language: node_js
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      - google-chrome
     packages:
-      - g++-4.8
+      - google-chrome-stable
+      - lib32stdc++6
+      - lib32z1
 
-sudo: required
+cache:
+  directories:
+    - $HOME/.nvm
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+notifications:
+  email:
+  - diego.domingues16@gmail.com, rogerio.alcantara@gmail.com
+  slack:
+    secure: puI9oyrhrul5lEVx6i0+A6I9puRizGfnY7CN3/3z8e6BV9bpmngeLqtCqf/xNY242Twjrf43qU86BRxDNYzASldmjyRLKQLW4iZth64rO5B3gE+HWLFdLeyEYtl10WmQMJUjd+gJC0oL2FcOhlEmB0mzBv+wOP2ez32Tr1Sv1GgIkYhkDyZVGajTa2XuLeAiCeGQL0cpjXBWk1rQmZUD/z5Tf3HjuPi09RoxpolkMxTH88dXU/mQ/3zMZoOnC/osAACF6jyjh5/XXq/ATZewu1cseLimD5YHqsKG8I8AV26u1kFdbPG8Y54poCC8OXihAe6FhuYwPD7kwNRnecd6CCP79z+orenuHTupeKKpq9k3B/QIarXlYjE0oinQQGPi4BDnNKbmLOWnF6nzkxLOiGhur13E2UaJZppG/ekD4EMvEU/rT5lpPoUqEMectaFQRBguiLFmJRUK6ZF9F8LNBtvjwFXfpRQU/60Sq61UeccqSDwsK8PfJjMbRG8smSlmLIxGiqPu4UMzLCX6npfYfsVl7K/wkLoXZLbIe+eGFR4/4Rb22PIGM6YFR43vPjDwfkeFKluVMzqtvci9TrDp/Y3UriqcP5H5M/blNG24IhbAA4rUJT7VdeOELdzkXtoRenBeOdtWz79j2hf26gOF+ETjLGXHQt5jfbDhXjMtWB8=
 
 branches:
   only:
@@ -44,25 +34,14 @@ branches:
 #
 
 before_install:
-  - rm -rf /home/travis/.nvm                                         #
-  - curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -   # upgrade node manually as we're building on
-  - sudo apt-get install -y nodejs                                   # android language and can't pick it in yml
-  - sudo npm update -g npm
-#  - sudo npm install -g cordova ionic
-  # Everything below here is installing latest chrome
-  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-  - sudo apt-get update
-  - sudo apt-get install -y google-chrome-stable
+  - npm install -g cordova ionic@beta
 
 install:
-  # Hack for phantom 403
-  - mkdir /tmp/phantomjs && wget -O /tmp/phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+  - npm install
   - .travis/setup.sh
   - npm run webdriver-update
 
 before_script:
-  - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
@@ -82,8 +61,15 @@ after_success:
   - cat coverage/lcov.info | ./node_modules/.bin/codecov
 
 before_deploy:
-  # build for android
+  # start install android
+  - wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
+  - tar -xzvf android-sdk_r24.2-linux.tgz
+  - echo "y" | ./android-sdk-linux/tools/android update sdk --no-ui --filter android-23,build-tools-23.0.1
+  - export ANDROID_HOME=${PWD}/android-sdk-linux
+  # end install android
   - ionic build android
+  # `ionic build android` wraps `cordova build android`, which gives a legit exit code if it fails. Ionic does not; test apk exists.
+  - ls ./platforms/android/build/outputs/apk/android*.apk
 
 deploy:
   provider: script

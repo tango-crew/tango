@@ -16,9 +16,13 @@
   <ion-app></ion-app>
 
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.43.min.js"></script>
+  <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
+  <!-- Settings used to encapsulate environments variables -->
   <script src="build/js/settings.js"></script>
+  <!-- Zone.js and Reflect-metadata  -->
+  <script src="build/js/angular2-polyfills.js"></script>
+  <!-- the bundle which is built from the app's source code -->
   <script src="build/js/app.bundle.js"></script>
-  <div id="fb-root"></div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 /// <reference path="main/ambient/chalk/index.d.ts" />
 /// <reference path="main/ambient/del/index.d.ts" />
 /// <reference path="main/ambient/es6-shim/index.d.ts" />
+/// <reference path="main/ambient/express-serve-static-core/index.d.ts" />
 /// <reference path="main/ambient/express/index.d.ts" />
 /// <reference path="main/ambient/glob/index.d.ts" />
 /// <reference path="main/ambient/gulp-load-plugins/index.d.ts" />
